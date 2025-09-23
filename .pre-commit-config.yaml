@@ -24,13 +24,26 @@ repos:
   rev: v3.4.0
   hooks:
   - id: editorconfig-checker
+    exclude: |
+      (?x)^(
+        scenes/quests/story_quests/(?!stella/|template/)
+      )
 
 - repo: https://github.com/Scony/godot-gdscript-toolkit
   rev: 4.3.4
   hooks:
   - id: gdformat
+    exclude: |
+      (?x)^(
+        scenes/quests/story_quests/(?!stella/|template/)
+      )
   - id: gdlint
-    exclude: script_templates/
+    exclude: |
+      (?x)^(
+        script_templates/|
+        scenes/quests/story_quests/(?!stella/|template/)
+      )
+
 exclude: |
   (?x)^(
     addons/dialogue_manager/(.*)|
