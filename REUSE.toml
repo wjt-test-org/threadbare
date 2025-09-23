@@ -69,10 +69,13 @@ path = [
     "assets/first_party/**/*.mp3",
     "assets/first_party/**/*.ogg",
     "assets/first_party/**/*.png",
+    "assets/first_party/**/*.svg",
     "icon-256.png",
     "icon.aseprite",
     "icon.png",
     "scenes/**/*.aseprite",
+    "scenes/**/*.mp3",
+    "scenes/**/*.ogg",
     "scenes/**/*.png",
     "scenes/**/*.svg",
 ]
