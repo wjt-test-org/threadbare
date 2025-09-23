@@ -14,9 +14,9 @@ repos:
   - id: check-illegal-windows-names
   - id: check-yaml
   - id: end-of-file-fixer
-    exclude: \.svg$
+    exclude_types: [image]
   - id: trailing-whitespace
-    exclude: \.svg$
+    exclude_types: [image]
 
 - repo: https://github.com/editorconfig-checker/editorconfig-checker
   rev: v3.4.0
