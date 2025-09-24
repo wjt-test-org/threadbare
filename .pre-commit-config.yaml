@@ -14,10 +14,18 @@ repos:
   - id: check-illegal-windows-names
   - id: check-yaml
   - id: end-of-file-fixer
-    exclude: \.piskel$
+    exclude: |
+      (?x)(
+        \.piskel$|
+        ^scenes/quests/story_quests/(?!stella/|template/)
+      )
     exclude_types: [image]
   - id: trailing-whitespace
-    exclude: \.piskel$
+    exclude: |
+      (?x)(
+        \.piskel$|
+        ^scenes/quests/story_quests/(?!stella/|template/)
+      )
     exclude_types: [image]
 
 - repo: https://github.com/editorconfig-checker/editorconfig-checker
