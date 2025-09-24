@@ -624,10 +624,6 @@ polygon = PackedVector2Array(1701, 1960, 1897, 1975, 1894, 2235, 2017, 2260, 201
 position = Vector2(1570.76, 2589.76)
 scale = Vector2(1.1495, 1.16735)
 
-[node name="Tree2" parent="OnTheGround/SouthCopse" instance=ExtResource("10_epkxq")]
-position = Vector2(1533.59, 2343.37)
-scale = Vector2(1.01018, 1.0867)
-
 [node name="Tree3" parent="OnTheGround/SouthCopse" instance=ExtResource("10_epkxq")]
 position = Vector2(1407.84, 2109.26)
 scale = Vector2(1.14588, 1.08283)
