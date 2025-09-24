@@ -23,6 +23,7 @@ const QUEST_CURRENTSCENE_KEY := "current_scene"
 const QUEST_SPAWNPOINT_KEY := "current_spawn_point"
 const GLOBAL_SECTION := "global"
 const GLOBAL_INCORPORATING_THREADS_KEY := "incorporating_threads"
+const COMPLETED_QUESTS_KEY := "completed_quests"
 
 ## Scenes to skip from saving.
 const TRANSIENT_SCENES := [
@@ -38,6 +39,9 @@ const TRANSIENT_SCENES := [
 ## Set when the loom transports the player to a trio of Sokoban puzzles, so that
 ## when the player returns to Fray's End the loom can trigger a brief cutscene.
 var incorporating_threads: bool = false
+
+## The paths to the [Quest]s that the player has completed, in the order that they were completed.
+var completed_quests: Array[String] = []
 
 var persist_progress: bool
 var _state := ConfigFile.new()
@@ -89,6 +93,15 @@ func set_current_spawn_point(spawn_point: NodePath = ^"") -> void:
 	_save()
 
 
+## Marks the current quest (if any) as completed.
+func mark_quest_completed() -> void:
+	var quest_name: String = _state.get_value(QUEST_SECTION, QUEST_PATH_KEY)
+	if quest_name and quest_name not in completed_quests:
+		completed_quests.append(quest_name)
+		_state.set_value(GLOBAL_SECTION, COMPLETED_QUESTS_KEY, completed_quests)
+		_save()
+
+
 ## Set the scene path and [member current_spawn_point] without triggering a save.
 func _do_set_scene(scene_path: String, spawn_point: NodePath = ^"") -> void:
 	current_spawn_point = spawn_point
@@ -133,6 +146,7 @@ func _update_inventory_state() -> void:
 ## Clear the persisted state.
 func clear() -> void:
 	_state.clear()
+	completed_quests = []
 	_save()
 
 
@@ -159,6 +173,7 @@ func restore() -> Dictionary:
 	incorporating_threads = _state.get_value(
 		GLOBAL_SECTION, GLOBAL_INCORPORATING_THREADS_KEY, false
 	)
+	completed_quests = _state.get_value(GLOBAL_SECTION, COMPLETED_QUESTS_KEY, [])
 	return {"scene_path": scene_path, "spawn_point": current_spawn_point}
 
 

@@ -49,6 +49,7 @@ func on_offering_succeeded() -> void:
 	loom_offering_animation_player.play(&"loom_offering")
 	await loom_offering_animation_player.animation_finished
 	GameState.clear_inventory()
+	GameState.mark_quest_completed()
 
 
 func is_item_offering_possible() -> bool:
