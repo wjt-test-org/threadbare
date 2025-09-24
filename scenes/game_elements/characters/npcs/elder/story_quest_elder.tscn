@@ -30,6 +30,7 @@ position = Vector2(0, -40)
 sprite_frames = ExtResource("3_rah8h")
 animation = &"idle"
 autoplay = "idle"
+frame = 5
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
