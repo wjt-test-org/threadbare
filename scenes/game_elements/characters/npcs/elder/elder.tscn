@@ -20,6 +20,7 @@ size = Vector2(67, 72)
 
 [node name="Elder" type="CharacterBody2D"]
 collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_jlpjw")
 dialogue = ExtResource("2_kqtes")
 look_at_side = 0

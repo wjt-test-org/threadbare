@@ -51,6 +51,7 @@ size = Vector2(60, 60)
 [node name="HookableButtonItem" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_oue3d")
 
 [node name="ButtonItem" parent="." instance=ExtResource("1_vymxr")]
