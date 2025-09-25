@@ -13,6 +13,7 @@ const STORYQUESTS_PATH := "res://scenes/quests/story_quests/"
 # Using + instead of String.path_join() here because it errors with:
 # Assigned value for constant "TEMPLATE_PATH" isn't a constant expression.
 const TEMPLATE_PATH := STORYQUESTS_PATH + "template/"
+const QUEST_FILENAME := "quest.tres"
 const MIN_TITLE_LENGTH := 4
 
 var template_info := {
@@ -163,9 +164,9 @@ func _on_create_storyquest(title: String, description: String, filename: String)
 		error = ResourceSaver.save(packed_scene, scene_path)
 		assert(error == OK)
 
-	var storyquest_resource := Storybook.STORY_QUEST_TEMPLATE.duplicate(true)
+	var storyquest_resource := load(TEMPLATE_PATH.path_join(QUEST_FILENAME)).duplicate(true)
 	var intro_uid := ResourceUID.id_to_text(ResourceLoader.get_resource_uid(intro_scene_path))
-	storyquest_resource.resource_path = storyquest_path.path_join(Storybook.QUEST_RESOURCE_NAME)
+	storyquest_resource.resource_path = storyquest_path.path_join(QUEST_FILENAME)
 	storyquest_resource.title = title
 	storyquest_resource.description = description
 	storyquest_resource.first_scene = intro_uid
