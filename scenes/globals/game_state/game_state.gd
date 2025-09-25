@@ -93,6 +93,10 @@ func set_current_spawn_point(spawn_point: NodePath = ^"") -> void:
 	_save()
 
 
+func is_on_quest() -> bool:
+	return _state.has_section_key(QUEST_SECTION, QUEST_PATH_KEY)
+
+
 ## Marks the current quest (if any) as completed.
 func mark_quest_completed() -> void:
 	var quest_name: String = _state.get_value(QUEST_SECTION, QUEST_PATH_KEY, "")
@@ -118,6 +122,12 @@ func add_collected_item(item: InventoryItem) -> void:
 	collected_items_changed.emit(items_collected())
 	_update_inventory_state()
 	_save()
+
+
+func abandon_quest() -> void:
+	set_incorporating_threads(false)
+	_state.erase_section_key(QUEST_SECTION, QUEST_PATH_KEY)
+	clear_inventory()
 
 
 ## Remove all [InventoryItem] from the [member inventory].
