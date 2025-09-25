@@ -95,7 +95,7 @@ func set_current_spawn_point(spawn_point: NodePath = ^"") -> void:
 
 ## Marks the current quest (if any) as completed.
 func mark_quest_completed() -> void:
-	var quest_name: String = _state.get_value(QUEST_SECTION, QUEST_PATH_KEY)
+	var quest_name: String = _state.get_value(QUEST_SECTION, QUEST_PATH_KEY, "")
 	if quest_name and quest_name not in completed_quests:
 		completed_quests.append(quest_name)
 		_state.set_value(GLOBAL_SECTION, COMPLETED_QUESTS_KEY, completed_quests)
