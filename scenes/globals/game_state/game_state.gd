@@ -173,7 +173,7 @@ func restore() -> Dictionary:
 	incorporating_threads = _state.get_value(
 		GLOBAL_SECTION, GLOBAL_INCORPORATING_THREADS_KEY, false
 	)
-	completed_quests = _state.get_value(GLOBAL_SECTION, COMPLETED_QUESTS_KEY, [])
+	completed_quests = _state.get_value(GLOBAL_SECTION, COMPLETED_QUESTS_KEY, [] as Array[String])
 	return {"scene_path": scene_path, "spawn_point": current_spawn_point}
 
 
