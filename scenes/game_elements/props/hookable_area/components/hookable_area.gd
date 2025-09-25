@@ -8,14 +8,14 @@ extends Area2D
 ## Area to connect the grappling hook.
 ##
 ## An area to connect the grappling hook to a game entity (by default, this node's parent).
-## While the final connection is a single [member anchor_point],
+## While the final connection is a single position, as returned by [method get_anchor_position],
 ## the collision is checked against this area that should be big enough
 ## for player forgiveness.
 ## [br][br]
 ## This is a piece of the grappling hook mechanic.
 ## [br][br]
-## When the grappling hook ray enters, it connects at the
-## [member anchor_point].
+## When the grappling hook ray enters, it connects at [method get_anchor_position].
+## You can specify a [member anchor_point] for using something different than this node's position.
 ## [br][br]
 ## If [member hook_control] is provided, this becomes a connection
 ## so the grappling hook can in turn aim from here.
@@ -42,6 +42,8 @@ const HOOKABLE_LAYER = 13
 	set = _set_hook_control
 
 ## The exact point to attach the string.
+## [br][br]
+## Optional. [member global_position] will be used if this is not set.
 @export var anchor_point: Marker2D
 
 ## When the grappling hook pulls and this area is hooked:[br]
@@ -56,6 +58,11 @@ const HOOKABLE_LAYER = 13
 func _enter_tree() -> void:
 	if not controlled_entity and get_parent() is Node2D:
 		controlled_entity = get_parent()
+
+
+## Return the global position used to connect the hook.
+func get_anchor_position() -> Vector2:
+	return anchor_point.global_position if anchor_point else global_position
 
 
 func _get_configuration_warnings() -> PackedStringArray:

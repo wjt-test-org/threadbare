@@ -124,7 +124,7 @@ func _new_hook_string() -> Line2D:
 ## [br][br]
 ## Part of group hook_listener.
 func hooked(_new_hooked_to: HookableArea, is_loop: bool) -> void:
-	var p: Vector2 = _new_hooked_to.anchor_point.global_position
+	var p: Vector2 = _new_hooked_to.get_anchor_position()
 	if not hook_string:
 		hook_string = _new_hook_string()
 	hook_string.add_point(p, 0)
@@ -260,7 +260,7 @@ func _process_hook_string(delta: float) -> void:
 	var ending_area := get_ending_area()
 	if ending_area:
 		# Move first point to the hooked position.
-		hook_string.points[0] = ending_area.anchor_point.global_position
+		hook_string.points[0] = ending_area.get_anchor_position()
 
 	else:
 		# Not hooked, so a throw that hit air or wall.
