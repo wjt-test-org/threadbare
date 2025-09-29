@@ -102,7 +102,7 @@ func do_transition(
 ## fade-out to finish.
 func do_out_transition(
 	out_transition: Transition.Effect = Transition.Effect.FADE,
-):
+) -> void:
 	visible = true
 	await _leave_scene(out_transition)
 
