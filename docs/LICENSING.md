@@ -44,10 +44,14 @@ such licenses are given below.
   use, modification, and allows redistribution.
 * [Creative Commons Attribution 4.0 International][CC-BY-4.0] is suitable: we
   will credit the copyright owners in our Credits.
+  - For example, [Incompetech's Royalty-Free Music][Incompetech] page contains
+    hundreds of pieces of music, published under this license. These can be
+    used in Threadbare.
 
 [CC0-1.0]: ../LICENSES/CC0-1.0
 [CC-BY-4.0]: https://creativecommons.org/licenses/by/4.0/deed.en
 [CC-BY-SA-4.0]: ../LICENSES/CC-BY-SA-4.0.txt
+[Incompetech]: https://incompetech.com/music/royalty-free/music.html
 
 ### Unsuitable asset licenses
 
