@@ -41,9 +41,9 @@
 [ext_resource type="PackedScene" uid="uid://d0c4l7ev6ca3c" path="res://scenes/game_elements/props/spawn_point/spawn_point.tscn" id="37_thm8h"]
 [ext_resource type="Script" uid="uid://bdhjixygupit1" path="res://scenes/game_elements/props/area_filler/area_filler.gd" id="38_cjmkx"]
 [ext_resource type="PackedScene" uid="uid://dv4f232y8w8dv" path="res://scenes/game_elements/props/decoration/water_rock/water_rock.tscn" id="38_jqkod"]
-[ext_resource type="SpriteFrames" uid="uid://bg5lo6fu776x2" path="res://scenes/game_elements/props/decoration/crops/components/carrot_spriteframes.tres" id="39_lftgk"]
-[ext_resource type="SpriteFrames" uid="uid://yu1kfifkqdq6" path="res://scenes/game_elements/props/decoration/crops/components/tomato_spriteframes.tres" id="40_ljovl"]
-[ext_resource type="SpriteFrames" uid="uid://cql0h6utsuuar" path="res://scenes/game_elements/props/decoration/crops/components/barley_spriteframes.tres" id="41_eodqy"]
+[ext_resource type="PackedScene" uid="uid://bqkui35x5ly0" path="res://scenes/game_elements/props/decoration/crops/tomato.tscn" id="39_ljovl"]
+[ext_resource type="PackedScene" uid="uid://ccpgw7k4rlmea" path="res://scenes/game_elements/props/decoration/crops/barley.tscn" id="42_eodqy"]
+[ext_resource type="PackedScene" uid="uid://c78fj5em5tpm5" path="res://scenes/game_elements/props/decoration/crops/carrot.tscn" id="42_ljovl"]
 [ext_resource type="PackedScene" uid="uid://c0104ickpm3ru" path="res://scenes/game_elements/props/decoration/flower/flower.tscn" id="45_cjmkx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h30yx"]
@@ -726,7 +726,6 @@ position = Vector2(225, 469)
 [node name="Bush7" parent="Bushes" instance=ExtResource("18_yntpr")]
 position = Vector2(242, 480)
 scale = Vector2(0.6, 0.6)
-sprite_frames = ExtResource("39_lftgk")
 
 [node name="Bush8" parent="Bushes" instance=ExtResource("18_yntpr")]
 position = Vector2(364, 480)
@@ -819,361 +818,6 @@ y_sort_enabled = true
 position = Vector2(1253, 1134)
 scale = Vector2(1.1, 1.1)
 
-[node name="Bush36" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1563, 417)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush37" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1700, 417)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush38" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1667, 417)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush39" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1632, 417)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush41" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1599, 417)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush42" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1667, 468)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush43" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1599, 443)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush44" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1700, 443)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush57" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1571, 619)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("40_ljovl")
-
-[node name="Bush58" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(422, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush109" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(412, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush108" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(412, 1200)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush106" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(402, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush105" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(432, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush104" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(432, 1200)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush103" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(441, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush102" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(450, 1182)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush101" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(450, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush100" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(458, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush99" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(467, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush98" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(466, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush97" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(475, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush96" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(484, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush95" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(484, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush94" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(501, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush93" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(492, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush63" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(310, 807)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("40_ljovl")
-
-[node name="Bush64" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(348, 807)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("40_ljovl")
-
-[node name="Bush59" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(501, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush92" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(519, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush91" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(519, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush90" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(510, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush89" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(528, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush88" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(538, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush87" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(538, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush86" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(548, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush85" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(558, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush82" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(558, 1181)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush84" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(567, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush83" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(577, 1180)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush81" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(577, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush66" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(625, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush67" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(587, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush60" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(597, 1180)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush80" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(597, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush79" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(606, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush78" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(616, 1179)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush76" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(634, 1179)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush75" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(634, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush77" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(642, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush61" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(651, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush68" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(616, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush69" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(659, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush70" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(651, 1179)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush71" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(668, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush72" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(668, 1179)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush73" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(676, 1190)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush74" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(684, 1201)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush62" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(684, 1179)
-scale = Vector2(0.4, 0.6)
-sprite_frames = ExtResource("41_eodqy")
-
-[node name="Bush45" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1632, 443)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush46" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1632, 468)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush47" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1667, 443)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush48" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1700, 469)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush49" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1632, 495)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush50" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1563, 495)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush51" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1599, 495)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush52" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1563, 443)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush53" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1700, 495)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush54" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1668, 495)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush55" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1563, 469)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
-[node name="Bush56" parent="Bushes" instance=ExtResource("18_yntpr")]
-position = Vector2(1599, 468)
-scale = Vector2(0.3, 0.45)
-sprite_frames = ExtResource("39_lftgk")
-
 [node name="Bush28" parent="Bushes" instance=ExtResource("18_yntpr")]
 position = Vector2(1074, 1548)
 scale = Vector2(0.8, 0.8)
@@ -1185,6 +829,228 @@ scale = Vector2(1.1, 1.1)
 [node name="Bush65" parent="Bushes" instance=ExtResource("18_yntpr")]
 position = Vector2(270, 1729)
 scale = Vector2(0.8, 0.8)
+
+[node name="Tomatoes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tomato" parent="Tomatoes" instance=ExtResource("39_ljovl")]
+position = Vector2(1571, 619)
+
+[node name="Tomato2" parent="Tomatoes" instance=ExtResource("39_ljovl")]
+position = Vector2(310, 807.00006)
+
+[node name="Tomato3" parent="Tomatoes" instance=ExtResource("39_ljovl")]
+position = Vector2(348, 807)
+
+[node name="Carrots" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Carrot" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1563, 417)
+
+[node name="Carrot2" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1700, 417)
+
+[node name="Carrot3" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1667, 417)
+
+[node name="Carrot4" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1632, 417)
+
+[node name="Carrot5" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1599, 417)
+
+[node name="Carrot6" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1667, 468)
+
+[node name="Carrot7" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1599, 443)
+
+[node name="Carrot8" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1700, 443)
+
+[node name="Carrot9" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1632, 443)
+
+[node name="Carrot10" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1632, 468)
+
+[node name="Carrot11" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1667, 443)
+
+[node name="Carrot12" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1700, 469)
+
+[node name="Carrot13" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1632, 495)
+
+[node name="Carrot14" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1563, 495)
+
+[node name="Carrot15" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1599, 495)
+
+[node name="Carrot16" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1563, 443)
+
+[node name="Carrot17" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1700, 495)
+
+[node name="Carrot18" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1668, 495)
+
+[node name="Carrot19" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1563, 469)
+
+[node name="Carrot20" parent="Carrots" instance=ExtResource("42_ljovl")]
+position = Vector2(1599, 468)
+
+[node name="BarleyField" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Barley" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(422, 1194)
+
+[node name="Barley2" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(412, 1185)
+
+[node name="Barley3" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(412, 1204)
+
+[node name="Barley4" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(402, 1194)
+
+[node name="Barley5" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(432, 1185)
+
+[node name="Barley6" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(432, 1204)
+
+[node name="Barley7" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(441, 1194)
+
+[node name="Barley8" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(450, 1186)
+
+[node name="Barley9" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(450, 1205)
+
+[node name="Barley10" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(458, 1194)
+
+[node name="Barley11" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(467, 1205)
+
+[node name="Barley12" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(466, 1185)
+
+[node name="Barley13" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(475, 1194)
+
+[node name="Barley14" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(484, 1205)
+
+[node name="Barley15" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(484, 1185)
+
+[node name="Barley16" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(501, 1205)
+
+[node name="Barley17" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(492, 1194)
+
+[node name="Barley18" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(501, 1185)
+
+[node name="Barley19" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(519, 1185)
+
+[node name="Barley20" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(519, 1205)
+
+[node name="Barley21" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(510, 1194)
+
+[node name="Barley22" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(528, 1194)
+
+[node name="Barley23" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(538, 1205)
+
+[node name="Barley24" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(538, 1185)
+
+[node name="Barley25" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(548, 1194)
+
+[node name="Barley26" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(558, 1205)
+
+[node name="Barley27" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(558, 1185)
+
+[node name="Barley28" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(567, 1194)
+
+[node name="Barley29" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(577, 1184)
+
+[node name="Barley30" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(577, 1205)
+
+[node name="Barley31" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(625, 1194)
+
+[node name="Barley32" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(587, 1194)
+
+[node name="Barley33" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(597, 1184)
+
+[node name="Barley34" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(597, 1205)
+
+[node name="Barley35" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(606, 1194)
+
+[node name="Barley36" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(616, 1183)
+
+[node name="Barley37" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(634, 1183)
+
+[node name="Barley38" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(634, 1205)
+
+[node name="Barley39" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(642, 1194)
+
+[node name="Barley40" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(651, 1205)
+
+[node name="Barley41" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(616, 1205)
+
+[node name="Barley42" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(659, 1194)
+
+[node name="Barley43" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(651, 1183)
+
+[node name="Barley44" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(668, 1205)
+
+[node name="Barley45" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(668, 1183)
+
+[node name="Barley46" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(676, 1194)
+
+[node name="Barley47" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(684, 1205)
+
+[node name="Barley48" parent="BarleyField" instance=ExtResource("42_eodqy")]
+position = Vector2(684, 1183)
 
 [node name="Rocks" type="Node2D" parent="."]
 y_sort_enabled = true
