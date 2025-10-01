@@ -19,7 +19,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _ready() -> void:
-	print("Keyboard node ready: ", name, " - Action: ", action_name)
 	InputHelper.device_changed.connect(_on_input_device_changed)
 	_initialize_device_state()
 
@@ -29,7 +28,6 @@ func _initialize_device_state() -> void:
 	if joypads.size() > 0:
 		var device_id = joypads[0]
 		var joy_name = Input.get_joy_name(device_id).to_lower()
-		print("Detected joypad on start (keyboard node): ", joy_name)
 
 		if joy_name.find("xbox") != -1:
 			_on_input_device_changed(InputHelper.DEVICE_XBOX_CONTROLLER, device_id)
@@ -46,8 +44,6 @@ func _initialize_device_state() -> void:
 
 
 func _on_input_device_changed(device: String, _device_index: int) -> void:
-	print("Keyboard node - Device detected: ", device, " - Node: ", name)
-
 	match device:
 		InputHelper.DEVICE_KEYBOARD:
 			_activate_keyboard()
@@ -62,10 +58,8 @@ func _activate_keyboard() -> void:
 
 	if keyboard_texture:
 		texture = keyboard_texture
-		print("Showing keyboard texture for: ", name)
 
 
 func _deactivate_keyboard() -> void:
 	is_keyboard_active = false
 	visible = false
-	print("Hiding keyboard node: ", name)
