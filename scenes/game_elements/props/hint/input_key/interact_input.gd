@@ -16,13 +16,13 @@ var is_keyboard_mode: bool = true
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed(action_name):
 		if is_keyboard_mode:
-			# Modo teclado: cambiar color
+			# Keyboard mode: change color
 			modulate = Color.GRAY
 		else:
-			# Modo controlador: solo ajustar color, sin textura pressed
+			# Controller mode: only adjust color, without a "pressed" texture
 			modulate = Color.GRAY
 	else:
-		# Estado normal
+		# Normal state
 		modulate = Color.WHITE
 
 
@@ -41,7 +41,7 @@ func _detect_initial_device():
 
 func _on_input_device_changed(device: String, _device_index: int) -> void:
 	current_device = device
-	visible = true  # Siempre visible (híbrido)
+	visible = true  # Always visible (hybrid)
 
 	match device:
 		InputHelper.DEVICE_KEYBOARD:
