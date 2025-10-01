@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cgtonist08yxn"]
+[gd_scene load_steps=33 format=3 uid="uid://cgtonist08yxn"]
 
 [ext_resource type="Texture2D" uid="uid://bqe8u2t2tsoma" path="res://assets/third_party/tiny-swords/UI/Buttons/Button_Disable_3Slides.png" id="1_dojit"]
 [ext_resource type="Script" uid="uid://csl2nw1r7fhpj" path="res://scenes/menus/storybook/components/storybook_page.gd" id="1_jl23h"]
@@ -231,11 +231,6 @@ arrow/styles/hover = SubResource("StyleBoxFlat_bk7gi")
 arrow/styles/normal = SubResource("StyleBoxFlat_bk7gi")
 arrow/styles/pressed = SubResource("StyleBoxFlat_bk7gi")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_km4jt"]
-texture = ExtResource("3_0inj8")
-expand_margin_top = 7.0
-expand_margin_bottom = 15.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tfpy"]
 atlas = ExtResource("2_otsbv")
 region = Rect2(0, 0, 192, 192)
@@ -276,37 +271,20 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Title of the Quest"
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(360, 200)
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(360, 180)
 layout_mode = 2
-theme = SubResource("Theme_rf3dg")
-theme_override_styles/panel = SubResource("StyleBoxTexture_km4jt")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Panel"]
-custom_minimum_size = Vector2(300, 180)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -147.72
-offset_top = -67.92
-offset_right = 160.28
-offset_bottom = 82.08
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_rf3dg")
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 5
 
-[node name="Description" type="Label" parent="VBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -314,7 +292,7 @@ size_flags_horizontal = 4
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar, erat non consectetur cursus, erat erat lobortis massa, quis mattis purus dolor ac lorem. In hac habitasse platea dictumst. Suspendisse vulputate felis purus, ac scelerisque mauris tristique sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 autowrap_mode = 3
 
-[node name="Authors" type="Label" parent="VBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+[node name="Authors" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
