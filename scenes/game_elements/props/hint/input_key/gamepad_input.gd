@@ -89,34 +89,30 @@ func _ready() -> void:
 func _on_input_device_changed(device: String, _device_index: int) -> void:
 	current_device = device
 
+	is_keyboard_mode = (device == InputHelper.DEVICE_KEYBOARD)
 	match device:
 		InputHelper.DEVICE_KEYBOARD:
-			is_keyboard_mode = true
 			if is_controller_main_display:
 				visible = false
 			else:
 				visible = false
 
 		InputHelper.DEVICE_XBOX_CONTROLLER:
-			is_keyboard_mode = false
 			if is_controller_main_display:
 				visible = true
 				texture = xbox_controller_texture
 
 		InputHelper.DEVICE_PLAYSTATION_CONTROLLER:
-			is_keyboard_mode = false
 			if is_controller_main_display:
 				visible = true
 				texture = playstation_controller_texture
 
 		InputHelper.DEVICE_SWITCH_CONTROLLER:
-			is_keyboard_mode = false
 			if is_controller_main_display:
 				visible = true
 				texture = nintendo_controller_texture
 
 		InputHelper.DEVICE_STEAMDECK_CONTROLLER:
-			is_keyboard_mode = false
 			if is_controller_main_display:
 				visible = true
 				texture = steam_controller_texture
