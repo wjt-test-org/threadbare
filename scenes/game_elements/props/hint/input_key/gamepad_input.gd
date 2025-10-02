@@ -81,7 +81,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _ready() -> void:
-	print("Controller node ready: ", name, " - Is main display: ", is_controller_main_display)
 	InputHelper.device_changed.connect(_on_input_device_changed)
 	_detect_initial_device()
 
@@ -91,7 +90,6 @@ func _detect_initial_device():
 	if joypads.size() > 0:
 		var device_id = joypads[0]
 		var joy_name = Input.get_joy_name(device_id).to_lower()
-		print("Detected joypad on start: ", joy_name)
 
 		if joy_name.find("xbox") != -1:
 			_on_input_device_changed(InputHelper.DEVICE_XBOX_CONTROLLER, device_id)
@@ -108,7 +106,6 @@ func _detect_initial_device():
 
 
 func _on_input_device_changed(device: String, _device_index: int) -> void:
-	print("Controller node - Device detected: ", device, " - Node: ", name)
 	current_device = device
 
 	match device:
