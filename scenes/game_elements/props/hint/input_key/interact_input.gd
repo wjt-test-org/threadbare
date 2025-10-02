@@ -59,3 +59,7 @@ func _on_input_device_changed(device: String, _device_index: int) -> void:
 		InputHelper.DEVICE_STEAMDECK_CONTROLLER:
 			is_keyboard_mode = false
 			texture = steam_controller_texture
+
+		_:
+			is_keyboard_mode = false
+			texture = xbox_controller_texture

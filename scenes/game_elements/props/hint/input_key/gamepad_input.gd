@@ -116,3 +116,8 @@ func _on_input_device_changed(device: String, _device_index: int) -> void:
 			if is_controller_main_display:
 				visible = true
 				texture = steam_controller_texture
+
+		_:
+			if is_controller_main_display:
+				visible = true
+				texture = controller_default_texture
