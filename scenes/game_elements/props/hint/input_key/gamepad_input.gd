@@ -26,8 +26,8 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if is_controller_main_display:
-		var is_pressed = Input.is_action_pressed(action_name)
-		var any_direction_pressed = (
+		var is_pressed := Input.is_action_pressed(action_name)
+		var any_direction_pressed := (
 			Input.is_action_pressed("ui_up")
 			or Input.is_action_pressed("ui_down")
 			or Input.is_action_pressed("ui_left")
