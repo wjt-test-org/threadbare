@@ -36,7 +36,6 @@ func _physics_process(_delta: float) -> void:
 
 		if is_pressed:
 			visible = true
-			modulate = Color.WHITE
 			match current_device:
 				InputHelper.DEVICE_XBOX_CONTROLLER:
 					texture = (
@@ -64,7 +63,6 @@ func _physics_process(_delta: float) -> void:
 					texture = controller_pressed_texture
 		elif not any_direction_pressed:
 			visible = true
-			modulate = Color.WHITE
 			match current_device:
 				InputHelper.DEVICE_XBOX_CONTROLLER:
 					texture = xbox_controller_texture
