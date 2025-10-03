@@ -16,17 +16,15 @@ repos:
   - id: end-of-file-fixer
     exclude: |
       (?x)(
-        \.piskel$|
         ^scenes/quests/story_quests/(?!stella/|NO_EDIT/)
       )
-    exclude_types: [image]
+    exclude_types: [svg, piskel]
   - id: trailing-whitespace
     exclude: |
       (?x)(
-        \.piskel$|
         ^scenes/quests/story_quests/(?!stella/|NO_EDIT/)
       )
-    exclude_types: [image]
+    exclude_types: [svg, piskel]
 
 - repo: https://github.com/editorconfig-checker/editorconfig-checker
   rev: v3.4.0
