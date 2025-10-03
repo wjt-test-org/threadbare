@@ -42,3 +42,6 @@ docs/issue_template.md    @endlessm/community
 
 # Shared community + games team ownership
 .github/workflows/discord.yml @endlessm/community @endlessm/games
+
+# StoryQuest maintainers
+scenes/quests/story_quests/stella @endlessm/games @endlessm/learning
