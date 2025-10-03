@@ -39,18 +39,45 @@ GDScript source code should follow the [GDScript style guide][]. This is
 enforced using `gdlint` and `gdformat` from [godot-gdscript-toolkit][] when
 changes are submitted to the project.
 
-You can use [pre-commit][] to run the same checks locally. Install `pre-commit`
-then run the following command in your Threadbare checkout:
+You can use [pre-commit][] to run the same checks locally. `pre-commit`.
+`pre-commit` is written in Python, so if you don't have Python installed, you'll
+also need to install Python. The Threadbare team recommends using [`uv`][uv] to
+install and manage `pre-commit`, as well as installing Python if needed.
 
-```
-pre-commit install
-```
+### Install `pre-commit` with `uv`
+
+1. Install `uv` using
+   [these instructions](https://docs.astral.sh/uv/#installation)
+
+2. Install `pre-commit`:
+
+   ```
+   uv tool install pre-commit
+   ```
+
+3. If you need to upgrade `pre-commit` in future, use this command:
+
+   ```
+   uv tool upgrade pre-commit
+   ```
+
+> [!NOTE]
+> If you prefer to install `pre-commit` another way, that's fine!
+
+### Set up `pre-commit` for Threadbare
+
+Run the following command in your Threadbare checkout to set up `pre-commit`:
+
+   ```
+   pre-commit install
+   ```
 
 Now, coding style checks will be enforced when you run `git commit`.
 
 [GDScript style guide]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
 [godot-gdscript-toolkit]: https://github.com/Scony/godot-gdscript-toolkit
 [pre-commit]: https://pre-commit.com/
+[uv]: https://docs.astral.sh/uv/
 
 ## Git commit messages and pull request descriptions
 
