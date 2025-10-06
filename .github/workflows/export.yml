@@ -8,12 +8,32 @@ on:
         description: 'Also build a Flatpak bundle'
         type: boolean
   pull_request:
+    paths-ignore: &paths_ignore
+      - '**.aseprite'
+      - '**.license'
+      - 'LICENSES/**'
+      - 'docs/**'
+      - 'script_templates/**'
+      - .editorconfig
+      - .github/CODEOWNERS
+      - .github/ISSUE_TEMPLATE
+      - .github/dependabot.yml
+      - .gitignore
+      - .mailmap
+      - .mailmap
+      - .pre-commit-config.yaml
+      - AUTHORS
+      - CODE_OF_CONDUCT.md
+      - COPYING
+      - README.md
+      - REUSE.toml
   release:
     types:
       - published
   push:
     branches:
       - '*'
+    paths-ignore: *paths_ignore
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
