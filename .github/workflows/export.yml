@@ -117,7 +117,7 @@ jobs:
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: threadbare.flatpak
-          manifest-path: org.endlessaccess.threadbare.yml
+          manifest-path: linux/org.endlessaccess.threadbare.yml
           cache-key: "flatpak-builder-${{ github.sha }}"
 
       - name: Create Linux metadata bundle
