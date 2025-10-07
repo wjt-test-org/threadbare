@@ -22,8 +22,6 @@ enum State {
 
 const DEFAULT_SPRITE_FRAMES = preload("uid://ovu5wqo15s5g")
 
-const LOOK_AT_TURN_SPEED: float = 10.0
-
 @export_category("Appearance")
 @export var sprite_frames: SpriteFrames = DEFAULT_SPRITE_FRAMES:
 	set = _set_sprite_frames
@@ -48,8 +46,6 @@ const LOOK_AT_TURN_SPEED: float = 10.0
 @export var patrol_path: Path2D:
 	set(new_value):
 		patrol_path = new_value
-		if Engine.is_editor_hint():
-			queue_redraw()
 
 ## The wait time at each patrol point.
 @export_range(0, 5, 0.1, "or_greater", "suffix:s") var wait_time: float = 1.0
@@ -86,7 +82,7 @@ var last_seen_position: Vector2
 var breadcrumbs: Array[Vector2] = []
 ## Current state of the guard.
 var state: State = State.PATROLLING:
-	set = _change_state
+	set = _set_state
 
 # The player that's being detected.
 var _player: Player
@@ -128,11 +124,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		var selection_changed: Signal = _editor_interface().get_selection().selection_changed
-		if not selection_changed.is_connected(self.queue_redraw):
-			selection_changed.connect(self.queue_redraw)
-	else:
+	if not Engine.is_editor_hint():
 		# Player awareness is configured and started empty.
 		if player_awareness:
 			player_awareness.max_value = time_to_detect_player
@@ -162,8 +154,6 @@ func _process(delta: float) -> void:
 	_process_state()
 	guard_movement.move()
 
-	_update_direction(delta)
-
 	if state != State.ALERTED:
 		_update_player_awareness(delta)
 
@@ -186,23 +176,9 @@ func _process_state() -> void:
 				var target_position: Vector2 = breadcrumbs.back()
 				guard_movement.set_destination(target_position)
 			else:
-				_change_state(State.PATROLLING)
+				state = State.PATROLLING
 		State.ALERTED:
 			guard_movement.stop_moving()
-
-
-## Updates where the Guard is looking at.
-func _update_direction(delta: float) -> void:
-	if velocity.is_zero_approx():
-		return
-
-	var target_angle: float = velocity.angle()
-	detection_area.rotation = rotate_toward(
-		detection_area.rotation, target_angle, delta * LOOK_AT_TURN_SPEED
-	)
-
-	if not is_zero_approx(velocity.x):
-		animated_sprite_2d.flip_h = velocity.x < 0
 
 
 ## Changes how PlayerAwareness looks to reflect how close is the player to
@@ -244,24 +220,6 @@ func _update_debug_info() -> void:
 	debug_value("target point", guard_movement.destination)
 
 
-## What happens when a certain state is
-func _on_enter_state(new_state: State) -> void:
-	match new_state:
-		State.DETECTING:
-			if not _alert_sound.playing:
-				_alert_sound.play()
-		State.ALERTED:
-			if not _alert_sound.playing:
-				_alert_sound.play()
-			animation_player.play(&"alerted")
-			player_awareness.ratio = 1.0
-			player_awareness.tint_progress = Color.RED
-			player_awareness.visible = true
-		State.INVESTIGATING:
-			guard_movement.start_moving_now()
-			breadcrumbs.push_back(global_position)
-
-
 ## What happens when the guard reached the point it was walking towards
 func _on_destination_reached() -> void:
 	match state:
@@ -278,7 +236,7 @@ func _on_destination_reached() -> void:
 func _on_still_time_finished() -> void:
 	match state:
 		State.INVESTIGATING:
-			_change_state(State.RETURNING)
+			state = State.RETURNING
 
 
 ## What happens if the guard cannot reach their destination because it got
@@ -294,18 +252,32 @@ func _on_path_blocked() -> void:
 				previous_patrol_point_idx = current_patrol_point_idx
 				current_patrol_point_idx = new_patrol_point
 		State.INVESTIGATING:
-			_change_state(State.RETURNING)
+			state = State.RETURNING
 		State.RETURNING:
 			if not breadcrumbs.is_empty():
 				breadcrumbs.pop_back()
 
 
-func _change_state(next_state: State) -> void:
-	if next_state == state:
+func _set_state(new_state: State) -> void:
+	if state == new_state:
 		return
 
-	state = next_state
-	_on_enter_state(state)
+	state = new_state
+
+	match state:
+		State.DETECTING:
+			if not _alert_sound.playing:
+				_alert_sound.play()
+		State.ALERTED:
+			if not _alert_sound.playing:
+				_alert_sound.play()
+			animation_player.play(&"alerted")
+			player_awareness.ratio = 1.0
+			player_awareness.tint_progress = Color.RED
+			player_awareness.visible = true
+		State.INVESTIGATING:
+			guard_movement.start_moving_now()
+			breadcrumbs.push_back(global_position)
 
 
 ## Pass a property name as a parameter and it shows its name and its value
@@ -435,35 +407,6 @@ func edit_patrol_path() -> void:
 		patrol_path_curve.add_point(Vector2.ZERO)
 		patrol_path_curve.add_point(Vector2.RIGHT * 150.0)
 		editor_interface.edit_node.call_deferred(patrol_path)
-
-
-func _draw() -> void:
-	## Only draw the patrol path debug line if we are in the editor
-	## and the guard node is selected.
-	if Engine.is_editor_hint() and self in _editor_interface().get_selection().get_selected_nodes():
-		var debug_color: Color = Color.RED
-		var line_width: float = 5.0
-		var point_size: float = 15.
-
-		if patrol_path and patrol_path.curve:
-			var curve: Curve2D = patrol_path.curve
-			## Draw the patrol path segments
-			if curve.point_count > 1:
-				for point_idx in curve.point_count - 1:
-					draw_line(
-						to_local(patrol_path.to_global(curve.get_point_position(point_idx))),
-						to_local(patrol_path.to_global(curve.get_point_position(point_idx + 1))),
-						debug_color,
-						line_width,
-						true
-					)
-			## Draw a point in each place the guard stops while patrolling
-			for point_idx in curve.point_count:
-				draw_circle(
-					to_local(patrol_path.to_global(curve.get_point_position(point_idx))),
-					point_size,
-					debug_color
-				)
 
 
 func _set_sprite_frames(new_sprite_frames: SpriteFrames) -> void:

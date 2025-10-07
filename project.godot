@@ -33,6 +33,7 @@ AspectRatioDebugger="*res://scenes/globals/aspect_ratio_debugger/aspect_ratio_de
 [debug]
 
 gdscript/warnings/untyped_declaration=1
+shapes/paths/geometry_color=Color(0.72156864, 0.003921569, 0.9098039, 0.7764706)
 
 [dialogue_manager]
 

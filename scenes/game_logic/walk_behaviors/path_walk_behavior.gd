@@ -9,7 +9,7 @@ extends BaseCharacterBehavior
 ##
 ## If the path is closed the character walks in circles. If not, they walk back and forth turning
 ## around in endings.
-##
+## [br][br]
 ## If the character gets stuck while walking the path, they turn around, unless
 ## [member turn_around] has been disabled.
 
@@ -52,8 +52,12 @@ var initial_position: Vector2
 var direction: int = 1:
 	set = _set_direction
 
-# Offset of each point that the character will wait standing.
-var _standing_offsets: Array[float]
+## True if the [member walking_path] is closed, in which case the character will walk in
+## circles.
+var is_path_closed: bool
+
+# Offset of each pointy point in the path.
+var _pointy_offsets: Array[float]
 
 
 func _set_walking_path(new_walking_path: Path2D) -> void:
@@ -63,9 +67,11 @@ func _set_walking_path(new_walking_path: Path2D) -> void:
 		return
 	if walking_path:
 		# Set initial position and put character in path:
-		initial_position = walking_path.position + walking_path.curve.get_point_position(0)
-		character.position = initial_position
-		_setup_standing_offsets()
+		var initial_position_local := walking_path.curve.get_point_position(0)
+		initial_position = walking_path.to_global(initial_position_local)
+		character.global_position = initial_position
+		is_path_closed = _is_path_closed()
+		_setup_pointy_offsets()
 
 
 func _set_direction(new_direction: int) -> void:
@@ -93,69 +99,119 @@ func _ready() -> void:
 	_set_walking_path(walking_path)
 
 
+## Return a valid offset within the walking path curve.
+## If the path is closed, go in circles when crossing the initial position (offset zero).
+## If the path is open, clamp to the path length.
+func _get_next_offset(offset: float, delta_pixels: float) -> float:
+	if is_path_closed:
+		return fposmod(offset + delta_pixels, walking_path.curve.get_baked_length())
+	return clampf(offset + delta_pixels, 0, walking_path.curve.get_baked_length())
+
+
+## Return a potentially invalid offset for testing purposes.
+## It will be invalid (less than zero or bigger than the curve length) if
+## considering the current direction, going from offset to new offset
+## has crossed the initial position (offset zero).
+func _get_test_offset(offset: float, new_offset: float) -> float:
+	if is_path_closed and new_offset * direction < offset:
+		# Has crossed initial_position (offset zero)
+		return new_offset * direction + walking_path.curve.get_baked_length()
+	return new_offset
+
+
 func _physics_process(delta: float) -> void:
-	var closest_offset := walking_path.curve.get_closest_offset(
-		character.position - initial_position + walking_path.curve.get_point_position(0)
-	)
-	var new_offset := closest_offset + speeds.walk_speed * delta * direction
+	var offset := get_closest_offset_to_character()
+	var delta_pixels := speeds.walk_speed * delta * direction
+	var next_offset := _get_next_offset(offset, delta_pixels)
 
-	for idx in range(_standing_offsets.size()):
-		var point_offset := _standing_offsets[idx]
-		if direction == 1:
-			if (
-				point_offset > closest_offset
-				and (point_offset < new_offset or is_equal_approx(point_offset, new_offset))
-			):
-				pointy_path_reached.emit()
-			elif new_offset > walking_path.curve.get_baked_length():
-				pointy_path_reached.emit()
-		elif direction == -1:
-			if (
-				point_offset < closest_offset
-				and (point_offset > new_offset or is_equal_approx(point_offset, new_offset))
-			):
-				pointy_path_reached.emit()
+	# A point in the curve that is relative to the point in which the character is,
+	# in the given direction, and at a distance that depends on the character walk
+	# speed.
+	var target_position_local := walking_path.curve.sample_baked(next_offset)
+	var target_position := walking_path.to_global(target_position_local)
 
-	if not _is_path_closed():
-		# Turn around in endings:
-		if new_offset > walking_path.curve.get_baked_length() or new_offset < 0.0:
-			ending_reached.emit()
-			if turn_around:
-				direction *= -1
-
-	var target_position := (
-		initial_position
-		+ walking_path.curve.sample_baked(new_offset)
-		- walking_path.curve.get_point_position(0)
-	)
-
-	character.velocity = character.position.direction_to(target_position) * speeds.walk_speed
-
+	# Use the target position above to actually move the character in its direction:
+	character.velocity = character.global_position.direction_to(target_position) * speeds.walk_speed
 	var collided := character.move_and_slide()
+
 	if collided and character.is_on_wall():
+		# Turn around when colliding:
 		if speeds.is_stuck(character):
 			got_stuck.emit()
 			if turn_around:
 				direction *= -1
+				return
+
+	if not is_path_closed:
+		# Turn around in endings:
+		if next_offset == walking_path.curve.get_baked_length() or next_offset == 0.0:
+			ending_reached.emit()
+			if turn_around:
+				direction *= -1
+				return
+
+	var new_offset := get_closest_offset_to_character()
+	var test_offset := _get_test_offset(offset, new_offset)
+
+	# Check if any pointy point is between the closest offset and the new offset,
+	# and emit a signal if so.
+	for idx in range(_pointy_offsets.size()):
+		var pointy_offset := _pointy_offsets[idx]
+
+		if direction == 1:
+			if offset > pointy_offset:
+				continue
+			if pointy_offset <= test_offset:
+				pointy_path_reached.emit()
+				break
+		elif direction == -1:
+			if pointy_offset < test_offset:
+				continue
+			if offset >= pointy_offset:
+				pointy_path_reached.emit()
+				break
 
 
-func _setup_standing_offsets() -> void:
+## Return the distance in pixels along the curve
+## from the beginning of the path
+## to the point that is closest to the character position.
+func get_closest_offset_to_character() -> float:
+	return walking_path.curve.get_closest_offset(walking_path.to_local(character.global_position))
+
+
+func _is_curve_smooth(point_in: Vector2, point_out: Vector2) -> bool:
+	# TODO: Compare length_squared() < path_pointy_tolerance
+	return (point_in or point_out) and abs(point_in.cross(point_out)) <= path_continuous_tolerance
+
+
+func _setup_pointy_offsets() -> void:
+	var add_endings := (
+		not is_path_closed
+		or not _is_curve_smooth(
+			walking_path.curve.get_point_in(walking_path.curve.point_count - 1),
+			walking_path.curve.get_point_out(0)
+		)
+	)
+
 	for idx in range(walking_path.curve.point_count):
 		var point_position := walking_path.curve.get_point_position(idx)
-		var p_in := walking_path.curve.get_point_in(idx)
-		var p_out := walking_path.curve.get_point_out(idx)
-		# Ignore if at this point, the in and out controls make the path continuous and not pointy:
-		# TODO: Compare length_squared() < path_pointy_tolerance
-		if idx == 0 and not _is_path_closed():
-			_standing_offsets.append(walking_path.curve.get_closest_offset(point_position))
-		elif idx == walking_path.curve.point_count - 1 and not _is_path_closed():
-			# This especial case is because get_closest_offset() returns zero for the last point
-			# if the path is closed:
-			_standing_offsets.append(walking_path.curve.get_baked_length())
-		elif (p_in or p_out) and abs(p_in.cross(p_out)) <= path_continuous_tolerance:
-			continue
+		if idx == 0:
+			if not add_endings:
+				continue
+			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
+		elif idx == walking_path.curve.point_count - 1:
+			if not add_endings:
+				continue
+			# This especial case is because get_closest_offset() returns zero for the last point.
+			_pointy_offsets.append(walking_path.curve.get_baked_length())
 		else:
-			_standing_offsets.append(walking_path.curve.get_closest_offset(point_position))
+			var p_in := walking_path.curve.get_point_in(idx)
+			var p_out := walking_path.curve.get_point_out(idx)
+			if _is_curve_smooth(p_in, p_out):
+				# The curve is smooth (not pointy) in this point:
+				continue
+			else:
+				_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
 
 
 ## Return true if the end of the path is the same point as the beginning.
