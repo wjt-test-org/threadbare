@@ -9,7 +9,7 @@ extends BaseCharacterBehavior
 ##
 ## If the path is closed the character walks in circles. If not, they walk back and forth turning
 ## around in endings.
-##
+## [br][br]
 ## If the character gets stuck while walking the path, they turn around, unless
 ## [member turn_around] has been disabled.
 
@@ -99,48 +99,77 @@ func _ready() -> void:
 	_set_walking_path(walking_path)
 
 
+## Return a valid offset within the walking path curve.
+## If the path is closed, go in circles when crossing the initial position (offset zero).
+## If the path is open, clamp to the path length.
+func _get_next_offset(offset: float, delta_pixels: float) -> float:
+	if is_path_closed:
+		return fposmod(offset + delta_pixels, walking_path.curve.get_baked_length())
+	return clampf(offset + delta_pixels, 0, walking_path.curve.get_baked_length())
+
+
+## Return a potentially invalid offset for testing purposes.
+## It will be invalid (less than zero or bigger than the curve length) if
+## considering the current direction, going from offset to new offset
+## has crossed the initial position (offset zero).
+func _get_test_offset(offset: float, new_offset: float) -> float:
+	if is_path_closed and new_offset * direction < offset:
+		# Has crossed initial_position (offset zero)
+		return new_offset * direction + walking_path.curve.get_baked_length()
+	return new_offset
+
+
 func _physics_process(delta: float) -> void:
-	var closest_offset := get_closest_offset_to_character()
-	var new_offset := closest_offset + speeds.walk_speed * delta * direction
-
-	for idx in range(_pointy_offsets.size()):
-		var pointy_offset := _pointy_offsets[idx]
-		if direction == 1:
-			if (
-				pointy_offset > closest_offset
-				and (pointy_offset < new_offset or is_equal_approx(pointy_offset, new_offset))
-			):
-				pointy_path_reached.emit()
-			elif new_offset > walking_path.curve.get_baked_length():
-				pointy_path_reached.emit()
-		elif direction == -1:
-			if (
-				pointy_offset < closest_offset
-				and (pointy_offset > new_offset or is_equal_approx(pointy_offset, new_offset))
-			):
-				pointy_path_reached.emit()
-
-	if not is_path_closed:
-		# Turn around in endings:
-		if new_offset > walking_path.curve.get_baked_length() or new_offset < 0.0:
-			ending_reached.emit()
-			if turn_around:
-				direction *= -1
+	var offset := get_closest_offset_to_character()
+	var delta_pixels := speeds.walk_speed * delta * direction
+	var next_offset := _get_next_offset(offset, delta_pixels)
 
 	# A point in the curve that is relative to the point in which the character is,
 	# in the given direction, and at a distance that depends on the character walk
 	# speed.
-	var target_position_local := walking_path.curve.sample_baked(new_offset)
+	var target_position_local := walking_path.curve.sample_baked(next_offset)
 	var target_position := walking_path.to_global(target_position_local)
 
-	character.velocity = character.position.direction_to(target_position) * speeds.walk_speed
-
+	# Use the target position above to actually move the character in its direction:
+	character.velocity = character.global_position.direction_to(target_position) * speeds.walk_speed
 	var collided := character.move_and_slide()
+
 	if collided and character.is_on_wall():
+		# Turn around when colliding:
 		if speeds.is_stuck(character):
 			got_stuck.emit()
 			if turn_around:
 				direction *= -1
+				return
+
+	if not is_path_closed:
+		# Turn around in endings:
+		if next_offset == walking_path.curve.get_baked_length() or next_offset == 0.0:
+			ending_reached.emit()
+			if turn_around:
+				direction *= -1
+				return
+
+	var new_offset := get_closest_offset_to_character()
+	var test_offset := _get_test_offset(offset, new_offset)
+
+	# Check if any pointy point is between the closest offset and the new offset,
+	# and emit a signal if so.
+	for idx in range(_pointy_offsets.size()):
+		var pointy_offset := _pointy_offsets[idx]
+
+		if direction == 1:
+			if offset > pointy_offset:
+				continue
+			if pointy_offset <= test_offset:
+				pointy_path_reached.emit()
+				break
+		elif direction == -1:
+			if pointy_offset < test_offset:
+				continue
+			if offset >= pointy_offset:
+				pointy_path_reached.emit()
+				break
 
 
 ## Return the distance in pixels along the curve
