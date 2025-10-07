@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://db6vhi7s2f37c"]
+[gd_scene load_steps=68 format=4 uid="uid://db6vhi7s2f37c"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_f6lvl"]
 [ext_resource type="PackedScene" uid="uid://2rbpl811wlv1" path="res://scenes/game_elements/props/background_music/background_music.tscn" id="1_t8tj0"]
@@ -8,10 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="3_1b8xw"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="3_idy4y"]
 [ext_resource type="SpriteFrames" uid="uid://bapks76u4hipj" path="res://scenes/game_elements/props/decoration/bush/components/bush_spriteframes_green_small.tres" id="7_p2u32"]
-[ext_resource type="Texture2D" uid="uid://cdl2vrxgehaop" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Shift_Key_Dark.png" id="7_r8dog"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/gamepad_input.gd" id="8_54evt"]
 [ext_resource type="PackedScene" uid="uid://d37mebu7atru7" path="res://scenes/game_elements/characters/enemies/guard/guard.tscn" id="8_lbv6i"]
-[ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="9_54evt"]
 [ext_resource type="PackedScene" uid="uid://crqjcicx0vdu" path="res://scenes/game_elements/props/decoration/bush/bush.tscn" id="10_0q07n"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="10_idy4y"]
 [ext_resource type="PackedScene" uid="uid://7873qa54birk" path="res://scenes/game_elements/props/tree/tree.tscn" id="11_75rvf"]
@@ -49,6 +46,7 @@
 [ext_resource type="SpriteFrames" uid="uid://tchths61dylv" path="res://scenes/game_elements/characters/enemies/guard/components/storyvoretorch_frames_green.tres" id="31_fl2gg"]
 [ext_resource type="SpriteFrames" uid="uid://debgqvx62xx5o" path="res://scenes/game_elements/characters/enemies/guard/components/storyvore_frames_red.tres" id="32_pld6d"]
 [ext_resource type="SpriteFrames" uid="uid://qwlhm21ndgn2" path="res://scenes/game_elements/characters/enemies/guard/components/storyvore_frames_orange.tres" id="33_pld6d"]
+[ext_resource type="PackedScene" uid="uid://badjtfhkj7gbt" path="res://scenes/ui_elements/input_hints/run_hint.tscn" id="42_rbmmg"]
 
 [sub_resource type="Curve2D" id="Curve2D_vnsq3"]
 _data = {
@@ -980,35 +978,13 @@ debug_color = Color(0, 0, 0, 0.42)
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
-[node name="RunInputHint" type="Control" parent="ScreenOverlay"]
-layout_mode = 3
+[node name="RunHint" parent="ScreenOverlay" instance=ExtResource("42_rbmmg")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 140.0
 grow_vertical = 0
-scale = Vector2(2, 2)
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenOverlay/RunInputHint"]
-layout_mode = 0
-offset_left = 75.5
-offset_top = -112.5
-offset_right = 407.5
-offset_bottom = -12.5
-
-[node name="InteractInput" type="TextureRect" parent="ScreenOverlay/RunInputHint/HBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-texture = ExtResource("7_r8dog")
-script = ExtResource("8_54evt")
-action_name = &"running"
-
-[node name="Label" type="Label" parent="ScreenOverlay/RunInputHint/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("9_54evt")
-theme_type_variation = &"HintLabel"
-text = "Run"
 
 [node name="HUD" parent="." instance=ExtResource("10_idy4y")]
 
@@ -1022,7 +998,7 @@ position = Vector2(7391, 701)
 
 [node name="RunInputHint" parent="." node_paths=PackedStringArray("hint_node") instance=ExtResource("12_0csld")]
 position = Vector2(487, 191)
-hint_node = NodePath("../ScreenOverlay/RunInputHint")
+hint_node = NodePath("../ScreenOverlay/RunHint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RunInputHint"]
 position = Vector2(-203.5, 10.5)

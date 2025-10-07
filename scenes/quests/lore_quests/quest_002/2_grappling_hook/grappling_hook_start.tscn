@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://b8mfigsd8y5qs"]
+[gd_scene load_steps=17 format=4 uid="uid://b8mfigsd8y5qs"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_0g35k"]
 [ext_resource type="Material" uid="uid://64aeyjitacv3" path="res://scenes/game_elements/props/void/void_chromakey_material.tres" id="2_85rkf"]
@@ -10,14 +10,10 @@
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="8_jqq45"]
 [ext_resource type="PackedScene" uid="uid://covsdqqsd6rsy" path="res://scenes/game_elements/props/sign/sign.tscn" id="9_vdhd3"]
 [ext_resource type="PackedScene" uid="uid://4u7dloafx55f" path="res://scenes/game_elements/props/teleporter/teleporter/teleporter.tscn" id="10_wxpj0"]
-[ext_resource type="Texture2D" uid="uid://p8kty3uxifxu" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Space_Key_Dark.png" id="11_10ahs"]
+[ext_resource type="PackedScene" uid="uid://cdwf2nmeqns31" path="res://scenes/ui_elements/input_hints/throw_hint.tscn" id="11_10ahs"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="11_p44d7"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/input_key.gd" id="12_cspw2"]
 [ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="13_3g3x4"]
-[ext_resource type="PackedScene" uid="uid://buuh0p3bjdpkv" path="res://scenes/game_elements/props/hint/input_key/input_key.tscn" id="14_jqq45"]
-[ext_resource type="Texture2D" uid="uid://cc5wontx8obvi" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Arrow_Right_Key_Dark.png" id="15_vdhd3"]
-[ext_resource type="Texture2D" uid="uid://ckwsauhbhlod6" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Arrow_Down_Key_Dark.png" id="16_wxpj0"]
-[ext_resource type="Texture2D" uid="uid://bytssd0mbo28u" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Arrow_Up_Key_Dark.png" id="17_p44d7"]
+[ext_resource type="PackedScene" uid="uid://dt1y8odxq0xys" path="res://scenes/ui_elements/input_hints/movement_input_hints.tscn" id="14_cspw2"]
 
 [sub_resource type="Resource" id="Resource_kr8u1"]
 script = ExtResource("8_jqq45")
@@ -158,45 +154,14 @@ offset_top = -100.0
 offset_right = 166.0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenOverlay/InputHint/VBoxContainer"]
+[node name="ThrowHint" parent="ScreenOverlay/InputHint/VBoxContainer" instance=ExtResource("11_10ahs")]
 layout_mode = 2
-
-[node name="InteractInput" type="TextureRect" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-texture = ExtResource("11_10ahs")
-script = ExtResource("12_cspw2")
-action_name = &"ui_accept"
-
-[node name="Label" type="Label" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("13_3g3x4")
-theme_type_variation = &"HintLabel"
-text = "Throw"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScreenOverlay/InputHint/VBoxContainer"]
 layout_mode = 2
 
-[node name="LeftInput" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2" instance=ExtResource("14_jqq45")]
+[node name="MovementInputHints" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2" instance=ExtResource("14_cspw2")]
 layout_mode = 2
-
-[node name="RightInput" type="TextureRect" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("15_vdhd3")
-script = ExtResource("12_cspw2")
-action_name = &"ui_right"
-
-[node name="DownInput" type="TextureRect" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("16_wxpj0")
-script = ExtResource("12_cspw2")
-action_name = &"ui_down"
-
-[node name="UpInput" type="TextureRect" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("17_p44d7")
-script = ExtResource("12_cspw2")
-action_name = &"ui_up"
 
 [node name="Label" type="Label" parent="ScreenOverlay/InputHint/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
