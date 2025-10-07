@@ -7,8 +7,6 @@ extends CharacterBody2D
 
 enum State { IDLE, WALKING, ATTACKING, DEFEATED }
 
-const PROJECTILE_SCENE: PackedScene = preload("uid://j8mqjkg0rvai")
-
 const REQUIRED_ANIMATIONS: Array[StringName] = [
 	&"idle", &"walk", &"attack", &"attack anticipation", &"defeated"
 ]
@@ -21,6 +19,9 @@ const WALK_TARGET_SKIP_ANGLE: float = PI / 4.
 ## When targetting the next walking position, skip an inner circle. The radius of the inner
 ## circle is this proportion of the [member walking_range].
 const WALK_TARGET_SKIP_RANGE: float = 0.25
+
+## The projectile scene to instantiate when spawning a projectile.
+@export var projectile_scene: PackedScene = preload("uid://j8mqjkg0rvai")
 
 ## The period of time between throwing projectiles.
 ## Note: Currently this is limited by the length of the AnimationPlayer animation "attack".
@@ -250,7 +251,7 @@ func shoot_projectile() -> void:
 	if not allowed_labels:
 		_is_attacking = false
 		return
-	var projectile: Projectile = PROJECTILE_SCENE.instantiate()
+	var projectile: Projectile = projectile_scene.instantiate()
 	projectile.direction = projectile_marker.global_position.direction_to(player.global_position)
 	scale.x = 1 if projectile.direction.x < 0 else -1
 	projectile.label = allowed_labels.pick_random()
