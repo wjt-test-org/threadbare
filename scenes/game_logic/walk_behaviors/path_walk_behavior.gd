@@ -67,8 +67,9 @@ func _set_walking_path(new_walking_path: Path2D) -> void:
 		return
 	if walking_path:
 		# Set initial position and put character in path:
-		initial_position = walking_path.position + walking_path.curve.get_point_position(0)
-		character.position = initial_position
+		var initial_position_local := walking_path.curve.get_point_position(0)
+		initial_position = walking_path.to_global(initial_position_local)
+		character.global_position = initial_position
 		is_path_closed = _is_path_closed()
 		_setup_pointy_offsets()
 
@@ -100,7 +101,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var closest_offset := walking_path.curve.get_closest_offset(
-		character.position - initial_position + walking_path.curve.get_point_position(0)
+		walking_path.to_local(character.global_position)
 	)
 	var new_offset := closest_offset + speeds.walk_speed * delta * direction
 
@@ -128,11 +129,11 @@ func _physics_process(delta: float) -> void:
 			if turn_around:
 				direction *= -1
 
-	var target_position := (
-		initial_position
-		+ walking_path.curve.sample_baked(new_offset)
-		- walking_path.curve.get_point_position(0)
-	)
+	# A point in the curve that is relative to the point in which the character is,
+	# in the given direction, and at a distance that depends on the character walk
+	# speed.
+	var target_position_local := walking_path.curve.sample_baked(new_offset)
+	var target_position := walking_path.to_global(target_position_local)
 
 	character.velocity = character.position.direction_to(target_position) * speeds.walk_speed
 
