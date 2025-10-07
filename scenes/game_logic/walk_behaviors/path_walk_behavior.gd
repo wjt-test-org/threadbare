@@ -100,9 +100,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var closest_offset := walking_path.curve.get_closest_offset(
-		walking_path.to_local(character.global_position)
-	)
+	var closest_offset := get_closest_offset_to_character()
 	var new_offset := closest_offset + speeds.walk_speed * delta * direction
 
 	for idx in range(_pointy_offsets.size()):
@@ -143,6 +141,13 @@ func _physics_process(delta: float) -> void:
 			got_stuck.emit()
 			if turn_around:
 				direction *= -1
+
+
+## Return the distance in pixels along the curve
+## from the beginning of the path
+## to the point that is closest to the character position.
+func get_closest_offset_to_character() -> float:
+	return walking_path.curve.get_closest_offset(walking_path.to_local(character.global_position))
 
 
 func _is_curve_smooth(point_in: Vector2, point_out: Vector2) -> bool:
