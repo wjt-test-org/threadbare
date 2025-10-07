@@ -52,8 +52,8 @@ var initial_position: Vector2
 var direction: int = 1:
 	set = _set_direction
 
-# Offset of each point that the character will wait standing.
-var _standing_offsets: Array[float]
+# Offset of each pointy point in the path.
+var _pointy_offsets: Array[float]
 
 
 func _set_walking_path(new_walking_path: Path2D) -> void:
@@ -65,7 +65,7 @@ func _set_walking_path(new_walking_path: Path2D) -> void:
 		# Set initial position and put character in path:
 		initial_position = walking_path.position + walking_path.curve.get_point_position(0)
 		character.position = initial_position
-		_setup_standing_offsets()
+		_setup_pointy_offsets()
 
 
 func _set_direction(new_direction: int) -> void:
@@ -99,20 +99,20 @@ func _physics_process(delta: float) -> void:
 	)
 	var new_offset := closest_offset + speeds.walk_speed * delta * direction
 
-	for idx in range(_standing_offsets.size()):
-		var point_offset := _standing_offsets[idx]
+	for idx in range(_pointy_offsets.size()):
+		var pointy_offset := _pointy_offsets[idx]
 		if direction == 1:
 			if (
-				point_offset > closest_offset
-				and (point_offset < new_offset or is_equal_approx(point_offset, new_offset))
+				pointy_offset > closest_offset
+				and (pointy_offset < new_offset or is_equal_approx(pointy_offset, new_offset))
 			):
 				pointy_path_reached.emit()
 			elif new_offset > walking_path.curve.get_baked_length():
 				pointy_path_reached.emit()
 		elif direction == -1:
 			if (
-				point_offset < closest_offset
-				and (point_offset > new_offset or is_equal_approx(point_offset, new_offset))
+				pointy_offset < closest_offset
+				and (pointy_offset > new_offset or is_equal_approx(pointy_offset, new_offset))
 			):
 				pointy_path_reached.emit()
 
@@ -139,7 +139,7 @@ func _physics_process(delta: float) -> void:
 				direction *= -1
 
 
-func _setup_standing_offsets() -> void:
+func _setup_pointy_offsets() -> void:
 	for idx in range(walking_path.curve.point_count):
 		var point_position := walking_path.curve.get_point_position(idx)
 		var p_in := walking_path.curve.get_point_in(idx)
@@ -147,15 +147,15 @@ func _setup_standing_offsets() -> void:
 		# Ignore if at this point, the in and out controls make the path continuous and not pointy:
 		# TODO: Compare length_squared() < path_pointy_tolerance
 		if idx == 0 and not _is_path_closed():
-			_standing_offsets.append(walking_path.curve.get_closest_offset(point_position))
+			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
 		elif idx == walking_path.curve.point_count - 1 and not _is_path_closed():
 			# This especial case is because get_closest_offset() returns zero for the last point
 			# if the path is closed:
-			_standing_offsets.append(walking_path.curve.get_baked_length())
+			_pointy_offsets.append(walking_path.curve.get_baked_length())
 		elif (p_in or p_out) and abs(p_in.cross(p_out)) <= path_continuous_tolerance:
 			continue
 		else:
-			_standing_offsets.append(walking_path.curve.get_closest_offset(point_position))
+			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
 
 
 ## Return true if the end of the path is the same point as the beginning.
