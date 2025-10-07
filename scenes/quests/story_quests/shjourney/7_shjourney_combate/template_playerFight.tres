@@ -146,7 +146,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_i7pte")
 }],
 "loop": true,
-"name": &"attack_01",
+"name": &"attack_02",
 "speed": 10.0
 }, {
 "frames": [{
