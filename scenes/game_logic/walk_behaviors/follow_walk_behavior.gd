@@ -13,6 +13,9 @@ extends BaseCharacterBehavior
 ## Emitted when [member target] becomes reached or not.
 signal target_reached_changed(is_reached: bool)
 
+## Emitted when [member character] got stuck while walking.
+signal got_stuck
+
 ## Parameters controlling the speed at which this character walks. If unset, the default values of
 ## [CharacterSpeeds] are used.
 @export var speeds: CharacterSpeeds
@@ -91,6 +94,7 @@ func _physics_process(delta: float) -> void:
 
 	if collided and character.is_on_wall():
 		if speeds.is_stuck(character):
+			got_stuck.emit()
 			_update_direction()
 	else:
 		distance += speeds.walk_speed * delta
