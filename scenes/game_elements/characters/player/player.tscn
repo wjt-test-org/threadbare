@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://iu2q66clupc6"]
+[gd_scene load_steps=38 format=3 uid="uid://iu2q66clupc6"]
 
 [ext_resource type="Script" uid="uid://bwllxup305eib" path="res://scenes/game_elements/characters/player/components/player.gd" id="1_g2els"]
 [ext_resource type="SpriteFrames" uid="uid://vwf8e1v8brdp" path="res://scenes/quests/story_quests/NO_EDIT/NO_EDIT_player_components/NO_EDIT_player.tres" id="2_blfj0"]
@@ -379,35 +379,6 @@ tracks/8/keys = {
 }
 tracks/8/use_blend = true
 
-[sub_resource type="Animation" id="Animation_j0tly"]
-resource_name = "repel_deprecated"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [&"attack_01"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0, 1, 2, 3, 3]
-}
-
 [sub_resource type="Animation" id="Animation_nrnyj"]
 resource_name = "run"
 length = 0.6
@@ -527,7 +498,6 @@ _data = {
 &"defeated": SubResource("Animation_blfj0"),
 &"idle": SubResource("Animation_75vfm"),
 &"repel": SubResource("Animation_u5klv"),
-&"repel_deprecated": SubResource("Animation_j0tly"),
 &"run": SubResource("Animation_nrnyj"),
 &"throw_string": SubResource("Animation_4nivu"),
 &"walk": SubResource("Animation_qek5x")

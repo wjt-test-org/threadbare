@@ -30,8 +30,6 @@ func _process(_delta: float) -> void:
 
 
 func _get_repel_animation() -> StringName:
-	if not player_sprite.sprite_frames.has_animation(&"attack_02"):
-		return &"repel_deprecated"
 	return &"repel"
 
 
