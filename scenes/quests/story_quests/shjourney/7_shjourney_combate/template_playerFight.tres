@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=43 format=3 uid="uid://blbgeo0jjttf4"]
+[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://blbgeo0jjttf4"]
 
 [ext_resource type="Texture2D" uid="uid://c71mojxxxxfvj" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/PJ_attack.png" id="1_5nfxk"]
 [ext_resource type="Texture2D" uid="uid://dp2c5hcg44j3d" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/TimDefeated.png" id="2_5nfxk"]
@@ -85,42 +85,6 @@ region = Rect2(576, 0, 64, 64)
 atlas = ExtResource("3_k32gq")
 region = Rect2(640, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dnk7a"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsmi1"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5p04k"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mty5"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6opw"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pykfg"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jngqd"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_smmnl"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hxv85"]
-atlas = ExtResource("4_r0ucd")
-region = Rect2(512, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qc4lu"]
 atlas = ExtResource("4_r0ucd")
 region = Rect2(0, 0, 64, 64)
@@ -182,7 +146,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_i7pte")
 }],
 "loop": true,
-"name": &"attack_01",
+"name": &"attack_02",
 "speed": 10.0
 }, {
 "frames": [{
@@ -232,38 +196,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dnk7a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gsmi1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5p04k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2mty5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6opw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pykfg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jngqd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smmnl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hxv85")
-}],
-"loop": true,
-"name": &"sprint",
 "speed": 10.0
 }, {
 "frames": [{
