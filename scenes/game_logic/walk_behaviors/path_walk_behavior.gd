@@ -52,6 +52,10 @@ var initial_position: Vector2
 var direction: int = 1:
 	set = _set_direction
 
+## True if the [member walking_path] is closed, in which case the character will walk in
+## circles.
+var is_path_closed: bool
+
 # Offset of each pointy point in the path.
 var _pointy_offsets: Array[float]
 
@@ -65,6 +69,7 @@ func _set_walking_path(new_walking_path: Path2D) -> void:
 		# Set initial position and put character in path:
 		initial_position = walking_path.position + walking_path.curve.get_point_position(0)
 		character.position = initial_position
+		is_path_closed = _is_path_closed()
 		_setup_pointy_offsets()
 
 
@@ -116,7 +121,7 @@ func _physics_process(delta: float) -> void:
 			):
 				pointy_path_reached.emit()
 
-	if not _is_path_closed():
+	if not is_path_closed:
 		# Turn around in endings:
 		if new_offset > walking_path.curve.get_baked_length() or new_offset < 0.0:
 			ending_reached.emit()
@@ -146,9 +151,9 @@ func _setup_pointy_offsets() -> void:
 		var p_out := walking_path.curve.get_point_out(idx)
 		# Ignore if at this point, the in and out controls make the path continuous and not pointy:
 		# TODO: Compare length_squared() < path_pointy_tolerance
-		if idx == 0 and not _is_path_closed():
+		if idx == 0 and not is_path_closed:
 			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
-		elif idx == walking_path.curve.point_count - 1 and not _is_path_closed():
+		elif idx == walking_path.curve.point_count - 1 and not is_path_closed:
 			# This especial case is because get_closest_offset() returns zero for the last point
 			# if the path is closed:
 			_pointy_offsets.append(walking_path.curve.get_baked_length())
