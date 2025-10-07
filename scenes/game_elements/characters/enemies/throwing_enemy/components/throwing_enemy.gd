@@ -53,6 +53,10 @@ const WALK_TARGET_SKIP_RANGE: float = 0.25
 
 @export_group("Projectile", "projectile")
 
+## The projectile will be instantiated at this distance from the [member projectile_marker] node,
+## in the direction of the player.
+@export_range(0., 100., 1., "or_greater", "suffix:m") var distance: float = 20.0
+
 ## The speed of the projectile initial impulse and the projectile bouncing impulse.
 @export_range(10., 100., 5., "or_greater", "or_less", "suffix:m/s")
 var projectile_speed: float = 30.0
@@ -257,7 +261,7 @@ func shoot_projectile() -> void:
 	projectile.label = allowed_labels.pick_random()
 	if projectile.label in color_per_label:
 		projectile.color = color_per_label[projectile.label]
-	projectile.global_position = (projectile_marker.global_position + projectile.direction * 20.)
+	projectile.global_position = projectile_marker.global_position + projectile.direction * distance
 	if projectile_follows_player:
 		projectile.node_to_follow = player
 	projectile.sprite_frames = projectile_sprite_frames
