@@ -144,23 +144,39 @@ func _physics_process(delta: float) -> void:
 				direction *= -1
 
 
+func _is_curve_smooth(point_in: Vector2, point_out: Vector2) -> bool:
+	# TODO: Compare length_squared() < path_pointy_tolerance
+	return (point_in or point_out) and abs(point_in.cross(point_out)) <= path_continuous_tolerance
+
+
 func _setup_pointy_offsets() -> void:
+	var add_endings := (
+		not is_path_closed
+		or not _is_curve_smooth(
+			walking_path.curve.get_point_in(walking_path.curve.point_count - 1),
+			walking_path.curve.get_point_out(0)
+		)
+	)
+
 	for idx in range(walking_path.curve.point_count):
 		var point_position := walking_path.curve.get_point_position(idx)
-		var p_in := walking_path.curve.get_point_in(idx)
-		var p_out := walking_path.curve.get_point_out(idx)
-		# Ignore if at this point, the in and out controls make the path continuous and not pointy:
-		# TODO: Compare length_squared() < path_pointy_tolerance
-		if idx == 0 and not is_path_closed:
+		if idx == 0:
+			if not add_endings:
+				continue
 			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
-		elif idx == walking_path.curve.point_count - 1 and not is_path_closed:
-			# This especial case is because get_closest_offset() returns zero for the last point
-			# if the path is closed:
+		elif idx == walking_path.curve.point_count - 1:
+			if not add_endings:
+				continue
+			# This especial case is because get_closest_offset() returns zero for the last point.
 			_pointy_offsets.append(walking_path.curve.get_baked_length())
-		elif (p_in or p_out) and abs(p_in.cross(p_out)) <= path_continuous_tolerance:
-			continue
 		else:
-			_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
+			var p_in := walking_path.curve.get_point_in(idx)
+			var p_out := walking_path.curve.get_point_out(idx)
+			if _is_curve_smooth(p_in, p_out):
+				# The curve is smooth (not pointy) in this point:
+				continue
+			else:
+				_pointy_offsets.append(walking_path.curve.get_closest_offset(point_position))
 
 
 ## Return true if the end of the path is the same point as the beginning.
