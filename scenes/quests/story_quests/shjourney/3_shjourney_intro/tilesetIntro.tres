@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=82 format=3 uid="uid://bpyv8qhmeyo6l"]
+[gd_resource type="TileSet" load_steps=70 format=3 uid="uid://bpyv8qhmeyo6l"]
 
 [ext_resource type="Texture2D" uid="uid://doc4qg7e3kgs" path="res://assets/third_party/tiny-swords/Terrain/Water/Water.png" id="1_g43c7"]
 [ext_resource type="Texture2D" uid="uid://lg5dl13njsg3" path="res://assets/first_party/tiles/Grass_And_Sand_Tiles.png" id="2_k480b"]
@@ -527,37 +527,6 @@ texture_region_size = Vector2i(64, 64)
 3:3/0/terrain = 8
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyrsb"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eneg1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p23k4"]
@@ -620,66 +589,6 @@ texture = SubResource("CompressedTexture2D_eneg1")
 6:6/0 = 0
 7:6/0 = 0
 5:6/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w62b"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ihs3d"]
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-9:1/0 = 0
-0:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-4:5/0 = 0
-4:4/0 = 0
-3:4/0 = 0
-3:5/0 = 0
-2:5/0 = 0
-1:5/0 = 0
-16:11/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fxl5u"]
 
@@ -986,31 +895,6 @@ texture = SubResource("CompressedTexture2D_j1t5g")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byuf6"]
-texture_region_size = Vector2i(32, 32)
-1:6/0 = 0
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.47934, -62.8099, 32, -32, 49.5868, 2.47934, 32, 32, -42.9752, 28.0992, -47.9339, 0, -29.7521, -42.1488)
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-5:0/0 = 0
-9:0/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-6:5/0 = 0
-10:6/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ey83s"]
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.12895, -56.4474, 20.8855, -47.4158, 32, -32, 49.6737, 3.95132, 32, 32, 11.5703, 38.843, 6.14713, 47.1279, 0, 66.9353, -5.4641, 49.86, -6.61157, 42.1488, -47.4158, 27.0947, -38.2487, 13.6603, -46.2869, -3.95132, -37.2553, -28.2237, -23.9055, -49.177)
-5:0/0 = 0
-9:0/0 = 0
-1:6/0 = 0
-3:6/0 = 0
-6:5/0 = 0
-10:5/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6fh"]
 texture = ExtResource("16_lesep")
 0:0/0 = 0
@@ -1026,45 +910,6 @@ texture = ExtResource("16_lesep")
 6:1/size_in_atlas = Vector2i(2, 5)
 6:1/0 = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lvp7w"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l5gqx"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyjr6"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6252w"]
-texture_region_size = Vector2i(64, 64)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_acd13"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qucef"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmclm"]
 texture = ExtResource("23_wujpg")
@@ -1099,37 +944,6 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/terrain_set = 0
 0:1/0/terrain = 2
 0:1/0/terrains_peering_bit/bottom_side = 2
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hirgq"]
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_apcef"]
 texture = ExtResource("17_2kran")
@@ -1999,23 +1813,11 @@ sources/10 = SubResource("TileSetAtlasSource_6jiih")
 sources/11 = SubResource("TileSetAtlasSource_qpeek")
 sources/12 = SubResource("TileSetAtlasSource_qhdiu")
 sources/14 = SubResource("TileSetAtlasSource_p23k4")
-sources/15 = SubResource("TileSetAtlasSource_2w62b")
-sources/16 = SubResource("TileSetAtlasSource_ihs3d")
 sources/17 = SubResource("TileSetAtlasSource_j1a6i")
 sources/18 = SubResource("TileSetAtlasSource_p4ill")
 sources/19 = SubResource("TileSetAtlasSource_6nf32")
 sources/20 = SubResource("TileSetAtlasSource_eakj6")
-sources/21 = SubResource("TileSetAtlasSource_byuf6")
-sources/22 = SubResource("TileSetAtlasSource_ey83s")
 sources/23 = SubResource("TileSetAtlasSource_gx6fh")
-sources/13 = SubResource("TileSetAtlasSource_vyrsb")
-sources/24 = SubResource("TileSetAtlasSource_lvp7w")
-sources/25 = SubResource("TileSetAtlasSource_l5gqx")
-sources/26 = SubResource("TileSetAtlasSource_dyjr6")
-sources/27 = SubResource("TileSetAtlasSource_6252w")
-sources/28 = SubResource("TileSetAtlasSource_acd13")
-sources/29 = SubResource("TileSetAtlasSource_qucef")
-sources/30 = SubResource("TileSetAtlasSource_hirgq")
 sources/31 = SubResource("TileSetAtlasSource_apcef")
 sources/32 = SubResource("TileSetAtlasSource_klqml")
 sources/33 = SubResource("TileSetAtlasSource_plopg")
