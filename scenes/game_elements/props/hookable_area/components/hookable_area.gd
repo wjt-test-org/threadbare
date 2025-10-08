@@ -28,8 +28,6 @@ extends Area2D
 ## [br][br]
 ## [b]Note:[/b] This area is expected to be in the "hookable" collision layer.
 
-const HOOKABLE_LAYER = 13
-
 ## The game entity that becomes hookable.
 ## [br][br]
 ## [b]Note:[/b] If the parent node is a Node2D and this isn't set,
@@ -69,8 +67,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if not controlled_entity:
 		warnings.append("Controlled Entity must be set.")
-	if not get_collision_layer_value(HOOKABLE_LAYER):
-		warnings.append("Consider enabling collision with the hookable layer: %d." % HOOKABLE_LAYER)
+	if not get_collision_layer_value(Enums.CollisionLayers.HOOKABLE):
+		warnings.append(
+			(
+				"Consider enabling collision with the hookable layer: %d."
+				% Enums.CollisionLayers.HOOKABLE
+			)
+		)
 	return warnings
 
 
