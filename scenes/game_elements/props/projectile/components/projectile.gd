@@ -5,9 +5,6 @@
 class_name Projectile
 extends RigidBody2D
 
-const PLAYER_HITBOX_LAYER: int = 6
-const ENEMY_HITBOX_LAYER: int = 7
-
 ## The projectile can fill barrels with the matching label.
 @export var label: String = "???"
 
@@ -97,12 +94,12 @@ func _set_direction(new_direction: Vector2) -> void:
 
 func _set_can_hit_player(new_can_hit_player: bool) -> void:
 	can_hit_player = new_can_hit_player
-	set_collision_mask_value(PLAYER_HITBOX_LAYER, can_hit_player)
+	set_collision_mask_value(Enums.CollisionLayers.PLAYERS_HITBOX, can_hit_player)
 
 
 func _set_can_hit_enemy(new_can_hit_enemy: bool) -> void:
 	can_hit_enemy = new_can_hit_enemy
-	set_collision_mask_value(ENEMY_HITBOX_LAYER, can_hit_enemy)
+	set_collision_mask_value(Enums.CollisionLayers.ENEMIES_HITBOX, can_hit_enemy)
 
 
 func _ready() -> void:

@@ -3,8 +3,6 @@
 @tool
 extends Toggleable
 
-const WALLS_COLLISION_LAYER = 5
-const PLAYER_COLLISION_LAYER = 1
 @export var play_victory_fanfare_on_open: bool = false
 @export var opened: bool = false:
 	set(new_val):
@@ -33,5 +31,5 @@ func update_opened_state() -> void:
 	%DoorClosed.visible = !opened
 	%DoorOpened.visible = opened
 
-	%ColliderWhenClosed.set_collision_layer_value(WALLS_COLLISION_LAYER, !opened)
-	%ColliderWhenClosed.set_collision_mask_value(PLAYER_COLLISION_LAYER, !opened)
+	%ColliderWhenClosed.set_collision_layer_value(Enums.CollisionLayers.WALLS, not opened)
+	%ColliderWhenClosed.set_collision_mask_value(Enums.CollisionLayers.PLAYERS, not opened)

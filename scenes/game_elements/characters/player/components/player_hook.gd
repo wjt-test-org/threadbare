@@ -17,8 +17,6 @@ extends Node2D
 ## Emitted when the string is thrown from the primary control.
 signal string_thrown
 
-const NON_WALKABLE_FLOOR_LAYER: int = 10
-
 ## The character using the grapping hook tool.
 ## [br][br]
 ## [b]Note:[/b] If the parent node is a CharacterBody2D and character isn't set,
@@ -198,7 +196,7 @@ func remove_string() -> void:
 ## While pulling, the player is allowed to go through non-walkable floor.
 func pull_string() -> void:
 	pulling = true
-	character.set_collision_mask_value(NON_WALKABLE_FLOOR_LAYER, false)
+	character.set_collision_mask_value(Enums.CollisionLayers.NON_WALKABLE_FLOOR, false)
 
 
 ## Stop pulling and remove the [member hook_string].
@@ -206,7 +204,7 @@ func pull_string() -> void:
 ## After pulling, the player is back to normal and not able to go through
 ## non-walkable floor.
 func stop_pulling() -> void:
-	character.set_collision_mask_value(NON_WALKABLE_FLOOR_LAYER, true)
+	character.set_collision_mask_value(Enums.CollisionLayers.NON_WALKABLE_FLOOR, true)
 	pulling = false
 	remove_string()
 
