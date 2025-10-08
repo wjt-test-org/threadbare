@@ -12,7 +12,7 @@ func shoot_projectile() -> void:
 	if not allowed_labels:
 		_is_attacking = false
 		return
-	var projectile: Projectile = PROJECTILE_SCENE.instantiate()
+	var projectile: Projectile = projectile_scene.instantiate()
 	projectile.direction = projectile_marker.global_position.direction_to(player.global_position)
 	scale.x = 1 if projectile.direction.x < 0 else -1
 	projectile.label = allowed_labels.pick_random()

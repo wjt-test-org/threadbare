@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_g84g0"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_vh8gp"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="3_avdpe"]
-[ext_resource type="Texture2D" uid="uid://cvgu3ba5aqd8i" path="res://scenes/quests/story_quests/verso/assets/Wood_Walls.png" id="3_lib0f"]
+[ext_resource type="Texture2D" uid="uid://c5jwngf36wn0i" path="res://scenes/quests/story_quests/verso/assets/Wood_Walls.png" id="3_lib0f"]
 [ext_resource type="Texture2D" uid="uid://cs6ndt48rjm2" path="res://scenes/quests/story_quests/verso/assets/Class_Tiles.png" id="4_6m3nq"]
 [ext_resource type="PackedScene" uid="uid://d37mebu7atru7" path="res://scenes/game_elements/characters/enemies/guard/guard.tscn" id="4_y71og"]
 [ext_resource type="PackedScene" uid="uid://dua6mynlw2ptw" path="res://scenes/game_elements/props/checkpoint/checkpoint.tscn" id="5_fl4qb"]
