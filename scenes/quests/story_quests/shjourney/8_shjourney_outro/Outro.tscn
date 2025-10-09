@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://b4dotq384vljq"]
+[gd_scene load_steps=43 format=4 uid="uid://b4dotq384vljq"]
 
 [ext_resource type="TileSet" uid="uid://birttlb0sk74i" path="res://scenes/quests/story_quests/shjourney/8_shjourney_outro/tilesetOutro.tres" id="1_0jcvd"]
 [ext_resource type="Script" uid="uid://bdvg77f0s1ymu" path="res://scenes/quests/story_quests/shjourney/8_shjourney_outro/outro.gd" id="1_bov4k"]
@@ -28,9 +28,7 @@
 [ext_resource type="Script" uid="uid://bycmduf7yv7ux" path="res://scenes/quests/story_quests/shjourney/8_shjourney_outro/quest_arbol_3.gd" id="20_rdjet"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="21_2i2nx"]
 [ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="23_a1kpq"]
-[ext_resource type="Texture2D" uid="uid://p8kty3uxifxu" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Space_Key_Dark.png" id="24_gs4mb"]
 [ext_resource type="AudioStream" uid="uid://dbwjolg3xlntq" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/template_intro_components/EffectSounds/amazon-rainforest.mp3" id="24_rdjet"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/input_key.gd" id="25_2sl0a"]
 [ext_resource type="AudioStream" uid="uid://bg74cwirr0fy7" path="res://scenes/quests/story_quests/shjourney/Otros_componentes/musicas/10- Time Whistle.mp3" id="26_3urrv"]
 [ext_resource type="PackedScene" uid="uid://bdtis4ye3hah2" path="res://scenes/quests/story_quests/shjourney/9_shjourney_outro_2/neblina.tscn" id="27_2sl0a"]
 [ext_resource type="PackedScene" uid="uid://bhipktaj0oefq" path="res://scenes/quests/story_quests/shjourney/8_shjourney_outro/Puerta.tscn" id="28_qomnf"]
@@ -437,30 +435,11 @@ theme_type_variation = &"HintLabel"
 text = "más que
 mil palabras.."
 
-[node name="InteractInput" type="TextureRect" parent="."]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1065.5
-offset_top = 4510.5
-offset_right = 1165.5
-offset_bottom = 4610.5
-grow_vertical = 0
-texture = ExtResource("24_gs4mb")
-script = ExtResource("25_2sl0a")
-action_name = &"running"
-
 [node name="Node2D9" parent="." instance=ExtResource("5_14vr6")]
 position = Vector2(1031, 4063)
 
 [node name="Node2D10" parent="." instance=ExtResource("5_14vr6")]
 position = Vector2(707, 4058)
-
-[node name="SpaceKeyDark" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(622, 4474)
-texture = ExtResource("24_gs4mb")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("27_2sl0a")]
 scale = Vector2(3.7, 3.7)
