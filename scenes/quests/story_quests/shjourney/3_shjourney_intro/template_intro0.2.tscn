@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://djrxlfp43b7pt"]
+[gd_scene load_steps=44 format=4 uid="uid://djrxlfp43b7pt"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_mtosg"]
 [ext_resource type="PackedScene" uid="uid://p6q2uo2us0il" path="res://scenes/quests/story_quests/shjourney/light.tscn" id="2_5gqe7"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="10_tm8dh"]
 [ext_resource type="AudioStream" uid="uid://bvq56m78f2v7g" path="res://scenes/quests/story_quests/shjourney/Otros_componentes/musicas/2 The Veil of Night Loop 1 Start .wav" id="12_g2jpu"]
 [ext_resource type="PackedScene" uid="uid://dua6mynlw2ptw" path="res://scenes/game_elements/props/checkpoint/checkpoint.tscn" id="12_oectw"]
+[ext_resource type="PackedScene" uid="uid://dt1y8odxq0xys" path="res://scenes/ui_elements/input_hints/movement_input_hints.tscn" id="12_x6v85"]
+[ext_resource type="PackedScene" uid="uid://badjtfhkj7gbt" path="res://scenes/ui_elements/input_hints/run_hint.tscn" id="13_0hk53"]
 [ext_resource type="AudioStream" uid="uid://dbwjolg3xlntq" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/template_intro_components/EffectSounds/amazon-rainforest.mp3" id="13_4ttmx"]
 [ext_resource type="Script" uid="uid://cm5hbvvpkiw7u" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/Music/music.gd" id="13_6ltfn"]
 [ext_resource type="Texture2D" uid="uid://iptiy3bqigrh" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/presentacion/rosaazul1.png" id="13_03851"]
@@ -21,15 +23,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c63hg7u58lfak" path="res://scenes/quests/story_quests/shjourney/Otros_componentes/angel_sprite_frames.tres" id="15_x6v85"]
 [ext_resource type="PackedScene" uid="uid://bdtis4ye3hah2" path="res://scenes/quests/story_quests/shjourney/9_shjourney_outro_2/neblina.tscn" id="16_iptbp"]
 [ext_resource type="Resource" uid="uid://7g75vdxbo0nr" path="res://scenes/quests/story_quests/shjourney/Angel/components/dialogo-angel.dialogue" id="17_4ttmx"]
-[ext_resource type="PackedScene" uid="uid://buuh0p3bjdpkv" path="res://scenes/game_elements/props/hint/input_key/input_key.tscn" id="17_u8380"]
-[ext_resource type="Texture2D" uid="uid://dwloomqbao5j1" path="res://assets/third_party/inputs/keyboard-and-mouse/Light/Arrow_Left_Key_Light.png" id="18_4ek3l"]
 [ext_resource type="Script" uid="uid://hs14yse0u0uh" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/music.gd" id="19_0dc1f"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/gamepad_input.gd" id="19_4ek3l"]
-[ext_resource type="Texture2D" uid="uid://bhtf0ipgfttv4" path="res://assets/third_party/inputs/keyboard-and-mouse/Light/Arrow_Right_Key_Light.png" id="19_6ltfn"]
-[ext_resource type="Texture2D" uid="uid://qkedw0kou5j8" path="res://assets/third_party/inputs/keyboard-and-mouse/Light/Arrow_Down_Key_Light.png" id="21_x6v85"]
-[ext_resource type="Texture2D" uid="uid://nm4n8vqpggij" path="res://assets/third_party/inputs/keyboard-and-mouse/Light/Arrow_Up_Key_Light.png" id="22_0hk53"]
-[ext_resource type="Texture2D" uid="uid://hpwnbj0t3i1u" path="res://assets/third_party/inputs/keyboard-and-mouse/Light/Shift_Key_Light.png" id="22_03p8r"]
-[ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="23_4ek3l"]
 [ext_resource type="PackedScene" uid="uid://ccoqpcy371psq" path="res://scenes/quests/story_quests/shjourney/3_shjourney_intro/sign.tscn" id="29_oixsc"]
 [ext_resource type="PackedScene" uid="uid://due8sqsrtdke1" path="res://scenes/quests/story_quests/shjourney/Otros_componentes/fire_fly.tscn" id="30_g2jpu"]
 
@@ -406,6 +400,21 @@ editor_draw_limits = true
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenOverlay"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="MovementInputHints" parent="ScreenOverlay/HBoxContainer" instance=ExtResource("12_x6v85")]
+layout_mode = 2
+
+[node name="RunHint" parent="ScreenOverlay/HBoxContainer" instance=ExtResource("13_0hk53")]
+layout_mode = 2
+size_flags_vertical = 8
+
 [node name="Darkness" type="Node2D" parent="."]
 position = Vector2(492.153, 300.55)
 
@@ -556,95 +565,6 @@ position = Vector2(1023, 202)
 [node name="ParallaxBackground" parent="." instance=ExtResource("16_iptbp")]
 scale = Vector2(3.7, 3.7)
 transform = Transform2D(3.7, 0, 0, 3.7, 0, 0)
-
-[node name="MovementInputHints" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 324.0
-offset_top = 875.0
-offset_right = 324.0
-offset_bottom = 875.0
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="LeftInput" parent="MovementInputHints" instance=ExtResource("17_u8380")]
-layout_mode = 0
-offset_left = -198.667
-offset_top = -362.0
-offset_right = -98.6664
-offset_bottom = -262.0
-scale = Vector2(0.781998, 0.657383)
-texture = ExtResource("18_4ek3l")
-
-[node name="RightInput" type="TextureRect" parent="MovementInputHints"]
-layout_mode = 0
-offset_left = -62.6664
-offset_top = -361.334
-offset_right = 37.3336
-offset_bottom = -261.334
-scale = Vector2(0.781998, 0.657383)
-texture = ExtResource("19_6ltfn")
-script = ExtResource("19_4ek3l")
-action_name = &"ui_right"
-
-[node name="DownInput" type="TextureRect" parent="MovementInputHints"]
-layout_mode = 0
-offset_left = -130.667
-offset_top = -360.667
-offset_right = -30.6664
-offset_bottom = -260.667
-scale = Vector2(0.781998, 0.657383)
-texture = ExtResource("21_x6v85")
-script = ExtResource("19_4ek3l")
-action_name = &"ui_down"
-
-[node name="UpInput" type="TextureRect" parent="MovementInputHints"]
-layout_mode = 0
-offset_left = -130.667
-offset_top = -417.333
-offset_right = -30.6664
-offset_bottom = -317.333
-scale = Vector2(0.781998, 0.657383)
-texture = ExtResource("22_0hk53")
-script = ExtResource("19_4ek3l")
-action_name = &"ui_up"
-
-[node name="InteractInput" type="TextureRect" parent="."]
-offset_left = 363.0
-offset_top = 339.0
-offset_right = 486.0
-offset_bottom = 439.0
-scale = Vector2(0.955064, 0.985955)
-texture = ExtResource("22_03p8r")
-script = ExtResource("19_4ek3l")
-action_name = &"running"
-
-[node name="Label" type="Label" parent="InteractInput"]
-layout_mode = 0
-offset_left = 139.0
-offset_top = 26.0
-offset_right = 286.0
-offset_bottom = 68.0
-scale = Vector2(1.55676, 1.76402)
-theme = ExtResource("23_4ek3l")
-theme_type_variation = &"HintLabel"
-text = "Correr"
-
-[node name="ScreenOverlay2" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="InteractionInputHint" type="Control" parent="ScreenOverlay2"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 521.0
-offset_top = 479.0
-offset_right = 521.0
-offset_bottom = 479.0
-scale = Vector2(2, 2)
-size_flags_horizontal = 8
-size_flags_vertical = 8
 
 [node name="Sign" parent="." instance=ExtResource("29_oixsc")]
 position = Vector2(617, 203)
