@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://detarlsgchyx3"]
+[gd_scene load_steps=33 format=4 uid="uid://detarlsgchyx3"]
 
 [ext_resource type="Script" uid="uid://cli0ni1rah58q" path="res://scenes/quests/story_quests/shjourney/7_shjourney_combate/fill_game_logic2.gd" id="1_ymgo3"]
 [ext_resource type="TileSet" uid="uid://cff3wffsnp02" path="res://scenes/quests/story_quests/shjourney/7_shjourney_combate/tilesetMinijuego03.tres" id="2_l82d5"]
@@ -19,10 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://p6q2uo2us0il" path="res://scenes/quests/story_quests/shjourney/light.tscn" id="11_inexp"]
 [ext_resource type="AudioStream" uid="uid://ci76r8x08vss" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/template_intro_components/EffectSounds/Fireball-impact.wav" id="12_1rvyy"]
 [ext_resource type="SpriteFrames" uid="uid://ce18naa1lhjon" path="res://scenes/quests/story_quests/shjourney/7_shjourney_combate/template_combat_components/llama2.tres" id="14_4ji03"]
-[ext_resource type="Texture2D" uid="uid://p8kty3uxifxu" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Space_Key_Dark.png" id="15_l82d5"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/gamepad_input.gd" id="16_khbdt"]
-[ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="17_5kk5x"]
 [ext_resource type="Script" uid="uid://cm5hbvvpkiw7u" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/Music/music.gd" id="19_jqvha"]
+[ext_resource type="PackedScene" uid="uid://dkx3dgc1br3b4" path="res://scenes/ui_elements/input_hints/repel_hint.tscn" id="19_mtgbq"]
 [ext_resource type="AudioStream" uid="uid://dxoui232ly161" path="res://scenes/quests/story_quests/shjourney/Otros_componentes/musicas/Hunting in the Reeds.mp3" id="22_r2vdt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jqvha"]
@@ -199,42 +197,17 @@ dialogue_title = &"well_done"
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="." instance=ExtResource("10_ol34f")]
-
-[node name="ScreenOverlay" type="CanvasLayer" parent="HUD"]
-
-[node name="InputHint" type="Control" parent="HUD/ScreenOverlay"]
-layout_mode = 3
+[node name="RepelHint" parent="ScreenOverlay" instance=ExtResource("19_mtgbq")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -140.0
-offset_top = 54.0
-offset_right = -140.0
-offset_bottom = 54.0
+offset_top = -100.0
+offset_right = 157.0
 grow_vertical = 0
-scale = Vector2(2, 2)
-size_flags_horizontal = 8
-size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ScreenOverlay/InputHint"]
-layout_mode = 0
-offset_left = 78.5
-offset_top = -110.0
-offset_right = 340.5
-offset_bottom = -10.0
+[node name="HUD" parent="." instance=ExtResource("10_ol34f")]
 
-[node name="InteractInput" type="TextureRect" parent="HUD/ScreenOverlay/InputHint/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_l82d5")
-script = ExtResource("16_khbdt")
-action_name = &"ui_accept"
-
-[node name="Label" type="Label" parent="HUD/ScreenOverlay/InputHint/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("17_5kk5x")
-theme_type_variation = &"HintLabel"
-text = "Contraatacar"
+[node name="ScreenOverlay" type="CanvasLayer" parent="HUD"]
 
 [node name="Oscurecer" type="Node2D" parent="."]
 
