@@ -98,6 +98,13 @@ var _player: Player
 @onready var sight_ray_cast: RayCast2D = %SightRayCast
 ## Control to hold debug info that can be toggled on or off.
 @onready var debug_info: Label = %DebugInfo
+
+## Reference to the node controlling the AnimationPlayer for walking / being idle,
+## so it can be disabled to play the alerted animation.
+@onready
+# gdlint:ignore = max-line-length
+var character_animation_player_behavior: CharacterAnimationPlayerBehavior = %CharacterAnimationPlayerBehavior
+
 ## Handles the velocity and movement of the guard.
 @onready var guard_movement: GuardMovement = %GuardMovement
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
@@ -269,6 +276,7 @@ func _set_state(new_state: State) -> void:
 			if not _alert_sound.playing:
 				_alert_sound.play()
 		State.ALERTED:
+			character_animation_player_behavior.process_mode = Node.PROCESS_MODE_DISABLED
 			if not _alert_sound.playing:
 				_alert_sound.play()
 			animation_player.play(&"alerted")
