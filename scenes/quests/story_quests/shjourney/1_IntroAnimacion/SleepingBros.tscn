@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://b8sewsfnsdw4u"]
+[gd_scene load_steps=111 format=3 uid="uid://b8sewsfnsdw4u"]
 
 [ext_resource type="Texture2D" uid="uid://dbsjs5bpkvckp" path="res://scenes/quests/story_quests/shjourney/1_IntroAnimacion/timysuhermanadurmiendo-Sheet.png" id="1_5qws3"]
 [ext_resource type="Script" uid="uid://d013y37215by1" path="res://scenes/quests/story_quests/shjourney/1_IntroAnimacion/saltar_escena.gd" id="2_f6rwu"]
@@ -8,9 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cy2i2517hhtvo" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/template_intro_components/EffectSounds/clock-tickingecho.wav" id="6_rrck4"]
 [ext_resource type="AudioStream" uid="uid://d3f7n4510edop" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/template_intro_components/EffectSounds/woman-gasping.mp3" id="7_su3c6"]
 [ext_resource type="Script" uid="uid://dgfhfulwcprar" path="res://scenes/quests/story_quests/shjourney/1_IntroAnimacion/cinematicSprite.gd" id="8_f6rwu"]
-[ext_resource type="Texture2D" uid="uid://p8kty3uxifxu" path="res://assets/third_party/inputs/keyboard-and-mouse/Dark/Space_Key_Dark.png" id="9_u1rls"]
-[ext_resource type="Script" uid="uid://d4bfnn5upde7h" path="res://scenes/game_elements/props/hint/input_key/gamepad_input.gd" id="10_rrck4"]
-[ext_resource type="Theme" uid="uid://cvitou84ni7qe" path="res://scenes/ui_elements/components/theme.tres" id="11_su3c6"]
+[ext_resource type="PackedScene" uid="uid://bdlaxkehg7vd6" path="res://scenes/quests/story_quests/shjourney/saltar_cinematica_hint.tscn" id="9_xcuh4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shlmy"]
 atlas = ExtResource("1_5qws3")
@@ -887,31 +885,10 @@ next_scene = "uid://bb1mgn8l00yo7"
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
-[node name="InputHint" type="Control" parent="ScreenOverlay"]
-layout_mode = 3
+[node name="SaltarCinematicaHint" parent="ScreenOverlay" instance=ExtResource("9_xcuh4")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_top = -100.0
+offset_bottom = 0.0
 grow_vertical = 0
-scale = Vector2(2, 2)
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenOverlay/InputHint"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -84.5
-offset_right = 298.0
-offset_bottom = 15.5
-
-[node name="InteractInput" type="TextureRect" parent="ScreenOverlay/InputHint/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("9_u1rls")
-script = ExtResource("10_rrck4")
-action_name = &"ui_accept"
-
-[node name="Label" type="Label" parent="ScreenOverlay/InputHint/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("11_su3c6")
-theme_type_variation = &"HintLabel"
-text = "Saltar cinemática."
