@@ -3,7 +3,17 @@
 @tool
 class_name FillingBarrel
 extends StaticBody2D
+## A barrel that starts empty and gets filled until completion
+##
+## @tutorial: https://github.com/endlessm/threadbare/discussions/1323
+##
+## This is a piece of the fill-matching mechanic.
+## [br][br]
+## Call [member fill()] to increment the amount. When
+## [member needed_amount] is reached, the [signal completed]
+## is emited.
 
+## Emited when the barrel amount reaches [member needed_amount].
 signal completed
 
 const DEFAULT_SPRITE_FRAMES: SpriteFrames = preload("uid://dlsq0ke41s1yh")
