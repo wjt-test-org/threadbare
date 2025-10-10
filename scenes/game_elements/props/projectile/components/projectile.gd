@@ -1,9 +1,21 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
-## A RigidBody2D that can be thrown between enemies and player. It has a label too, and it can
-## be used to fill barrels with the matching label.
 class_name Projectile
 extends RigidBody2D
+## A projectile that can fill matching [FillingBarrel]s.
+##
+## @tutorial: https://github.com/endlessm/threadbare/discussions/1323
+##
+## This is a piece of the fill-matching mechanic.
+## [br][br]
+## The projectile has a [member label] and optionally a [member color]
+## to tint it.
+## When the projectile collides with a [FillingBarrel] and both labels match,
+## it calls [member FillingBarrel.increment()] and is removed.
+## [br][br]
+## The projectile will live in the scene until [member duration_timer] times up.
+## When the projectile collides with anything, this timer is resetted, so the
+## projectile life is expanded.
 
 ## The projectile can fill barrels with the matching label.
 @export var label: String = "???"
@@ -61,7 +73,13 @@ var _trail_particles: GPUParticles2D
 @onready var visible_things: Node2D = %VisibleThings
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var trail_fx_marker: Marker2D = %TrailFXMarker
+
+## How long the projectile lives in the scene.
+## [br][br]
+## This timer is restarted each time the projectile collides with anything.
+## So the life of the projectile is extended in each collision.
 @onready var duration_timer: Timer = %DurationTimer
+
 @onready var hit_sound: AudioStreamPlayer2D = %HitSound
 
 
@@ -142,7 +160,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.owner is FillingBarrel:
 		var filling_barrel: FillingBarrel = body.owner as FillingBarrel
 		if filling_barrel.label == label:
-			filling_barrel.fill()
+			filling_barrel.increment()
 			queue_free()
 
 

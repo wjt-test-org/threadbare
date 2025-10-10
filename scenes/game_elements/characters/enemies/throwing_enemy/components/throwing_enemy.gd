@@ -1,9 +1,16 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
 @tool
-## Enemy that throws projectiles to the player.
 class_name ThrowingEnemy
 extends CharacterBody2D
+## Enemy that throws [Projectile]s to the player.
+##
+## @tutorial: https://github.com/endlessm/threadbare/discussions/1323
+##
+## This is a piece of the fill-matching mechanic.
+## [br][br]
+## When throwing, the label/color of the projectile is picked from
+## [member allowed_labels] and [member color_per_label].
 
 enum State { IDLE, WALKING, ATTACKING, DEFEATED }
 

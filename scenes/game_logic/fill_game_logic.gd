@@ -2,12 +2,31 @@
 # SPDX-License-Identifier: MPL-2.0
 class_name FillGameLogic
 extends Node
+## Manages the logic of the fill-matching game.
+##
+## @tutorial: https://github.com/endlessm/threadbare/discussions/1323
+##
+## This is a piece of the fill-matching mechanic.
+## [br][br]
+## Grabs the label and optional color of each [FillingBarrel] that exist in the
+## current scene, and assigns them as the allowed label/color of the [Projectile]
+## that each [ThrowingEnemy] is allowed to throw.
+## Each time a [FillingBarrel] is filled, perform the label/color assignment again
+## so [ThrowingEnemy]s only throw projectiles that can increase the amount of
+## the remaining barrels.
+## [br][br]
+## Also keep track of the completed [FillingBarrel]s and emit [signal goal_reached]
+## when [member barrels_to_win] is reached.
 
+## Emited when [member barrels_completed] reaches [member barrels_to_win].
 signal goal_reached
 
+## How many barrels to complete for winning.
 @export var barrels_to_win: int = 1
+
 @export var intro_dialogue: DialogueResource
 
+## Counter for the completed barrels.
 var barrels_completed: int = 0
 
 
