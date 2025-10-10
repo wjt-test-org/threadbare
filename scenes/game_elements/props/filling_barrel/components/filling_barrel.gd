@@ -61,13 +61,13 @@ func _ready() -> void:
 	animated_sprite_2d.frame = 0
 
 
-## Increment the amount by one and play the fill animation. If completed, also play the completed
+## Increment the amount and play an animation. If completed, also play the completed
 ## animation and remove this barrel from the current scene.
-func fill() -> void:
+func increment(by: int = 1) -> void:
 	if _amount >= needed_amount:
 		return
-	animation_player.play(&"fill")
-	_amount += 1
+	animation_player.play(&"increment")
+	_amount += by
 	animated_sprite_2d.frame = floor(float(_amount) / needed_amount * _total_frames())
 	if _amount >= needed_amount:
 		_disable_collisions.call_deferred()

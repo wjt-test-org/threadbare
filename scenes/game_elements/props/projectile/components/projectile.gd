@@ -142,7 +142,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.owner is FillingBarrel:
 		var filling_barrel: FillingBarrel = body.owner as FillingBarrel
 		if filling_barrel.label == label:
-			filling_barrel.fill()
+			filling_barrel.increment()
 			queue_free()
 
 
