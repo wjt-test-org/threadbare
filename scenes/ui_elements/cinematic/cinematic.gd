@@ -21,8 +21,10 @@ extends Node2D
 
 
 func _ready() -> void:
-	DialogueManager.show_dialogue_balloon(dialogue, "", [self])
-	await DialogueManager.dialogue_ended
+	if not GameState.intro_dialogue_shown:
+		DialogueManager.show_dialogue_balloon(dialogue, "", [self])
+		await DialogueManager.dialogue_ended
+		GameState.intro_dialogue_shown = true
 
 	if next_scene:
 		(

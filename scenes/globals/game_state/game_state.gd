@@ -40,6 +40,10 @@ const TRANSIENT_SCENES := [
 ## when the player returns to Fray's End the loom can trigger a brief cutscene.
 var incorporating_threads: bool = false
 
+## Set when any introductory dialogue has been played for the current scene.
+## Cleared when the scene changes.
+var intro_dialogue_shown: bool = false
+
 ## The paths to the [Quest]s that the player has completed, in the order that they were completed.
 var completed_quests: Array[String] = []
 
@@ -110,6 +114,9 @@ func mark_quest_completed() -> void:
 
 ## Set the scene path and [member current_spawn_point] without triggering a save.
 func _do_set_scene(scene_path: String, spawn_point: NodePath = ^"") -> void:
+	if get_scene_to_restore() != scene_path:
+		intro_dialogue_shown = false
+
 	current_spawn_point = spawn_point
 	_state.set_value(QUEST_SECTION, QUEST_CURRENTSCENE_KEY, scene_path)
 	_state.set_value(QUEST_SECTION, QUEST_SPAWNPOINT_KEY, current_spawn_point)
