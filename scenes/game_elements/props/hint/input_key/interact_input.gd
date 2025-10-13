@@ -28,10 +28,7 @@ func _physics_process(_delta: float) -> void:
 
 func _ready() -> void:
 	InputHelper.device_changed.connect(_on_input_device_changed)
-	_on_input_device_changed(
-		InputHelper.last_known_joypad_device,
-		InputHelper.last_known_joypad_index,
-	)
+	_on_input_device_changed(InputHelper.device, InputHelper.device_index)
 
 
 func _on_input_device_changed(device: String, _device_index: int) -> void:
