@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_dwcg4"]
 [ext_resource type="Material" uid="uid://64aeyjitacv3" path="res://scenes/game_elements/props/void/void_chromakey_material.tres" id="3_mg68y"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="4_m6xvq"]
-[ext_resource type="SpriteFrames" uid="uid://07di3updrwh0" path="res://scenes/game_elements/characters/components/sprite_frames/storyweaver_purple.tres" id="5_8ufyd"]
+[ext_resource type="SpriteFrames" uid="uid://dtoylirwywk0j" path="res://scenes/game_elements/characters/components/sprite_frames/storyweaver_blue.tres" id="5_dwcg4"]
 [ext_resource type="PackedScene" uid="uid://1vunygl4wpj6" path="res://scenes/game_elements/props/button_item/button_item.tscn" id="6_w164g"]
 [ext_resource type="PackedScene" uid="uid://dvj15pnuqr2ua" path="res://scenes/game_elements/props/hookable_button_item/hookable_button_item.tscn" id="7_txgtg"]
 [ext_resource type="PackedScene" uid="uid://dohb701lxbe5s" path="res://scenes/game_elements/props/hookable_needle/hookable_needle.tscn" id="8_s5uk4"]
@@ -63,7 +63,7 @@ position = Vector2(232, 462)
 scale = Vector2(1.03448, 1)
 player_name = "Storyweaver"
 mode = 2
-sprite_frames = ExtResource("5_8ufyd")
+sprite_frames = ExtResource("5_dwcg4")
 
 [node name="Camera2D" type="Camera2D" parent="OnTheGround/Player"]
 limit_left = 192
