@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvron1ojmm2ua"
-path="res://.godot/imported/NO_EDIT_floor_tiles.png-59d6eed2c867c11f572e8930dc8395a0.ctex"
+path="res://.godot/imported/floor_tiles.png-ef65024e7ad9bfdccdc9e161a1065999.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/NO_EDIT/NO_EDIT_tileset/NO_EDIT_floor_tiles.png"
-dest_files=["res://.godot/imported/NO_EDIT_floor_tiles.png-59d6eed2c867c11f572e8930dc8395a0.ctex"]
+source_file="res://assets/first_party/tiles/template/floor_tiles.png"
+dest_files=["res://.godot/imported/floor_tiles.png-ef65024e7ad9bfdccdc9e161a1065999.ctex"]
 
 [params]
 
