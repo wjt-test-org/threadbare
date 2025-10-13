@@ -5,11 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://1mjm4atk2j6e" path="res://scenes/ui_elements/story_quest_progress/components/item_slot/item_slot.tscn" id="3_mwl7j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqnrr"]
+content_margin_top = 32.0
+content_margin_right = 48.0
 texture = ExtResource("1_cikk2")
-texture_margin_left = 65.0
-texture_margin_top = 65.0
-texture_margin_right = 65.0
-texture_margin_bottom = 65.0
+texture_margin_left = 64.0
+texture_margin_top = 64.0
+texture_margin_right = 64.0
+texture_margin_bottom = 64.0
+expand_margin_top = 32.0
+expand_margin_right = 16.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -17,8 +21,8 @@ axis_stretch_vertical = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -372.0
-offset_bottom = 208.0
+offset_left = -216.0
+offset_bottom = 128.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_hqnrr")
 script = ExtResource("2_hvmtc")
@@ -26,12 +30,20 @@ script = ExtResource("2_hvmtc")
 [node name="ItemsContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="ItemSlot" parent="ItemsContainer" instance=ExtResource("3_mwl7j")]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+expand_mode = 2
 
 [node name="ItemSlot2" parent="ItemsContainer" instance=ExtResource("3_mwl7j")]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+expand_mode = 2
 
 [node name="ItemSlot3" parent="ItemsContainer" instance=ExtResource("3_mwl7j")]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+expand_mode = 2
