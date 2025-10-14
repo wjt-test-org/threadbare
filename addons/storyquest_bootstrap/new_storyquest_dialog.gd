@@ -4,6 +4,7 @@
 extends Window
 
 signal create_storyquest(title: String, description: String, filename: String)
+signal cancel
 
 @export var storyquests_path: String
 @export var validate_title: Callable
@@ -19,6 +20,7 @@ var _filename: String
 @onready var errors_label: RichTextLabel = %ErrorsLabel
 @onready var folder_res_label: Label = %FolderResLabel
 @onready var description_edit: TextEdit = %DescriptionEdit
+@onready var progress_bar: ProgressBar = %ProgressBar
 
 
 func _ready() -> void:
@@ -32,7 +34,17 @@ func _ready() -> void:
 
 
 func _on_create_button_pressed() -> void:
+	title_edit.editable = false
+	description_edit.editable = false
+	create_button.disabled = true
+	progress_bar.visible = true
+	progress_bar.indeterminate = true
 	create_storyquest.emit(_title, _description, _filename)
+
+
+func _on_close_requested() -> void:
+	if not progress_bar.visible:
+		cancel.emit()
 
 
 func _make_filename(title: String) -> String:

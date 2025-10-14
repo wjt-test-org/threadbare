@@ -58,7 +58,7 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _to_string() -> String:
-	return '<Quest %s: "%s">' % [resource_path]
+	return '<Quest %s: "%s">' % [resource_path, title]
 
 
 ## Returns [member title] if set, or a placeholder identifying the quest otherwise.
