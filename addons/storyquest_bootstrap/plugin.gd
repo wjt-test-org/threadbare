@@ -29,7 +29,7 @@ func _open_new_storyquest_dialog() -> void:
 	_new_storyquest_dialog.validate_title = validate_title
 	_new_storyquest_dialog.validate_filename = validate_filename
 	_new_storyquest_dialog.create_storyquest.connect(_on_create_storyquest)
-	_new_storyquest_dialog.close_requested.connect(_close_dialog)
+	_new_storyquest_dialog.cancel.connect(_close_dialog)
 	EditorInterface.popup_dialog(_new_storyquest_dialog)
 
 
@@ -57,13 +57,12 @@ func validate_filename(filename: String) -> PackedStringArray:
 
 
 func _on_create_storyquest(title: String, description: String, filename: String) -> void:
-	_close_dialog()
-
 	assert(not validate_title(title).size())
 	assert(not validate_filename(filename).size())
 
 	var copier: Copier = Copier.new(filename, title, description)
 	await copier.create_storyquest()
+	_close_dialog()
 
 	EditorInterface.get_resource_filesystem().scan()
 	EditorInterface.select_file(copier.target_path)
