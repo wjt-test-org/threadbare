@@ -45,7 +45,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var step := speeds.stopping_step if input_vector.is_zero_approx() else speeds.moving_step
+	var step := (
+		speeds.stopping_step
+		if character.velocity.length_squared() > input_vector.length_squared()
+		else speeds.moving_step
+	)
 	character.velocity = character.velocity.move_toward(input_vector, step * delta)
 	character.move_and_slide()
 

@@ -180,12 +180,9 @@ func _process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
-	var step: float
-	if input_vector.is_zero_approx():
-		step = stopping_step
-	else:
-		step = moving_step
-
+	var step := (
+		stopping_step if velocity.length_squared() > input_vector.length_squared() else moving_step
+	)
 	velocity = velocity.move_toward(input_vector, step * delta)
 
 	move_and_slide()
