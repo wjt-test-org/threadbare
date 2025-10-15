@@ -11,7 +11,11 @@ const QUEST_FILENAME := "quest.tres"
 ## Map from UID to already-copied resource
 var orig_uid_to_copy: Dictionary[String, Resource]
 
-## Root directory of instantiated SQ
+## Name of root directory of quest, e.g. [code]"stella"[/code]
+var quest_name: String
+
+## Root directory of copied StoryQuest,
+## i.e. [code]STORYQUESTS_PATH.path_join(quest_name)[/code]
 var target_path: String
 
 var _title: String
@@ -22,6 +26,7 @@ var _depth: int = 0
 
 
 func _init(filename: String, title: String, description: String) -> void:
+	quest_name = filename
 	target_path = STORYQUESTS_PATH.path_join(filename)
 	self._title = title
 	self._description = description
@@ -160,8 +165,12 @@ func copy(uid: String, resource: Resource) -> Resource:
 		return orig_uid_to_copy[uid]
 
 	var subpath := resource.resource_path.right(-TEMPLATE_PATH.length())
-	subpath = subpath.replace(TEMPLATE_PREFIX + "_", "")
-	var copy_path := target_path.path_join(subpath)
+	var subdir := subpath.get_base_dir()
+	var filename := subpath.get_file()
+
+	subdir = subdir.replace(TEMPLATE_PREFIX + "_", "")
+	filename = filename.replace(TEMPLATE_PREFIX, quest_name)
+	var copy_path := target_path.path_join(subdir).path_join(filename)
 
 	_debug(["Copying", uid, resource.resource_path, "to", copy_path])
 	_depth += 1
