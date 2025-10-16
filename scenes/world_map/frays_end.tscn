@@ -319,7 +319,7 @@ position = Vector2(1506, 1263)
 position = Vector2(1663, 1102)
 
 [node name="Farmer" parent="NPCs" instance=ExtResource("11_mr2ek")]
-position = Vector2(1617, 625)
+position = Vector2(1625, 625)
 dialogue = ExtResource("25_6r0j2")
 npc_name = "Farmer"
 
@@ -802,7 +802,7 @@ position = Vector2(1571, 619)
 position = Vector2(310, 807)
 
 [node name="Tomato3" parent="Tomatoes" instance=ExtResource("39_ljovl")]
-position = Vector2(348, 807)
+position = Vector2(348, 819)
 
 [node name="Carrots" type="Node2D" parent="."]
 y_sort_enabled = true
