@@ -9,9 +9,9 @@ extends Node2D
 ## Handles the input to control the aiming and throwing.
 ## This is a piece of the grappling hook mechanic.
 ## [br][br]
-## The [b]ui_accept[/b] action is used for throwing.
+## The [b]throw[/b] action is used for throwing.
 ## [br][br]
-## The [b]ui_up, ui_down, ui_left and ui_right[/b] actions are used for aiming.
+## The [b]aim_up, aim_down, aim_left and aim_right[/b] actions are used for aiming.
 ## Additionally, the mouse movement can also be used for aiming,
 ## but the mouse not considered the primary input.
 ## [br][br]
@@ -100,13 +100,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# there is always one that is released first so the aim direction ends up being either left or
 	# down, not left AND down.
 	if (
-		_event.is_action_released(&"ui_left")
-		or _event.is_action_released(&"ui_right")
-		or _event.is_action_released(&"ui_up")
-		or _event.is_action_released(&"ui_down")
+		_event is InputEventKey
+		and (
+			_event.is_action_released(&"aim_left")
+			or _event.is_action_released(&"aim_right")
+			or _event.is_action_released(&"aim_up")
+			or _event.is_action_released(&"aim_down")
+		)
 	):
 		return
-	axis = Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+	axis = Input.get_vector(&"aim_left", &"aim_right", &"aim_up", &"aim_down")
 	if not axis.is_zero_approx():
 		if pressing_throw_action:
 			_hook_angle = rotate_toward(_hook_angle, axis.angle(), 0.05)
@@ -115,11 +118,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 			_hook_angle = axis.angle()
 			_hook_angle_set = true
 
-	if Input.is_action_just_pressed(&"ui_accept"):
+	if Input.is_action_just_pressed(&"throw"):
 		pressing_throw_action = true
 		return
 
-	if Input.is_action_just_released(&"ui_accept"):
+	if Input.is_action_just_released(&"throw"):
 		pressing_throw_action = false
 		throw_failed_while_pressing = false
 		return
