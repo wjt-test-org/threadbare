@@ -106,7 +106,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_fs5vc"]
-resource_name = "fill"
+resource_name = "increment"
 length = 0.8
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -152,7 +152,7 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_tu5xq"),
 &"completed": SubResource("Animation_6inx0"),
-&"fill": SubResource("Animation_fs5vc")
+&"increment": SubResource("Animation_fs5vc")
 }
 
 [node name="FillingBarrel" type="StaticBody2D" groups=["filling_barrels"]]

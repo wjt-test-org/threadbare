@@ -13,6 +13,7 @@ height = 73.6055
 size = Vector2(52, 50)
 
 [node name="Monk" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_et70a")
 npc_name = "Matilda"
 look_at_side = 0

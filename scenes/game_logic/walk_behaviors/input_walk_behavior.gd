@@ -30,8 +30,8 @@ func _set_is_running(new_is_running: bool) -> void:
 
 
 func _ready() -> void:
+	super._ready()
 	if Engine.is_editor_hint():
-		set_physics_process(false)
 		return
 
 	if not speeds:
@@ -39,13 +39,17 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	var axis := Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+	var axis := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 	var speed := speeds.run_speed if Input.is_action_pressed(&"running") else speeds.walk_speed
 	input_vector = axis * speed
 
 
 func _physics_process(delta: float) -> void:
-	var step := speeds.stopping_step if input_vector.is_zero_approx() else speeds.moving_step
+	var step := (
+		speeds.stopping_step
+		if character.velocity.length_squared() > input_vector.length_squared()
+		else speeds.moving_step
+	)
 	character.velocity = character.velocity.move_toward(input_vector, step * delta)
 	character.move_and_slide()
 

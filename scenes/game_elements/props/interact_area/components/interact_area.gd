@@ -9,7 +9,6 @@ signal interaction_ended
 
 const EXAMPLE_INTERACTION_FONT = preload("uid://c3bb7lmvdqc5e")
 const EXAMPLE_INTERACTION_FONT_SIZE = 34
-const INTERACTABLE_LAYER = 6
 
 ## Vector2 that approximates the position in which the interact label would
 ## appear when a player is close.
@@ -21,7 +20,7 @@ var interact_label_position: Vector2:
 @export var disabled: bool = false:
 	set(new_value):
 		disabled = new_value
-		set_collision_layer_value(INTERACTABLE_LAYER, not disabled)
+		set_collision_layer_value(Enums.CollisionLayers.INTERACTABLE, not disabled)
 @export var action: String = "Talk"
 
 
@@ -39,9 +38,12 @@ func get_global_interact_label_position() -> Vector2:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
-	if not disabled and not get_collision_layer_value(INTERACTABLE_LAYER):
+	if not disabled and not get_collision_layer_value(Enums.CollisionLayers.INTERACTABLE):
 		warnings.append(
-			"Consider enabling collision with the interactable layer: %d." % INTERACTABLE_LAYER
+			(
+				"Consider enabling collision with the interactable layer: %d."
+				% Enums.CollisionLayers.INTERACTABLE
+			)
 		)
 	return warnings
 

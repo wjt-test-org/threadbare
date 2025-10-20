@@ -17,8 +17,6 @@ extends Node2D
 ## Emitted when the string is thrown from the primary control.
 signal string_thrown
 
-const NON_WALKABLE_FLOOR_LAYER: int = 10
-
 ## The character using the grapping hook tool.
 ## [br][br]
 ## [b]Note:[/b] If the parent node is a CharacterBody2D and character isn't set,
@@ -84,6 +82,11 @@ var hook_string: Line2D
 ## It is set to aiming when there is no [member hook_string].
 @onready var hook_control: HookControl = $HookControl
 
+## Marker which position is set to the ending of the hook.
+## [br][br]
+## This can be used to pan or zoom the camera to frame the ending of the grappling hook.
+@onready var hook_ending: Marker2D = $HookEnding
+
 
 func _enter_tree() -> void:
 	if not character and get_parent() is CharacterBody2D:
@@ -124,10 +127,11 @@ func _new_hook_string() -> Line2D:
 ## [br][br]
 ## Part of group hook_listener.
 func hooked(_new_hooked_to: HookableArea, is_loop: bool) -> void:
-	var p: Vector2 = _new_hooked_to.anchor_point.global_position
+	var p: Vector2 = _new_hooked_to.get_anchor_position()
 	if not hook_string:
 		hook_string = _new_hook_string()
 	hook_string.add_point(p, 0)
+	hook_ending.global_position = p
 	areas_hooked.append(_new_hooked_to)
 	if not _new_hooked_to.hook_control:
 		pull_string()
@@ -192,13 +196,15 @@ func remove_string() -> void:
 	hook_control.release()
 	hook_control.state = HookControl.State.AIMING
 
+	hook_ending.global_position = global_position
+
 
 ## Start pulling.
 ## [br][br]
 ## While pulling, the player is allowed to go through non-walkable floor.
 func pull_string() -> void:
 	pulling = true
-	character.set_collision_mask_value(NON_WALKABLE_FLOOR_LAYER, false)
+	character.set_collision_mask_value(Enums.CollisionLayers.NON_WALKABLE_FLOOR, false)
 
 
 ## Stop pulling and remove the [member hook_string].
@@ -206,7 +212,7 @@ func pull_string() -> void:
 ## After pulling, the player is back to normal and not able to go through
 ## non-walkable floor.
 func stop_pulling() -> void:
-	character.set_collision_mask_value(NON_WALKABLE_FLOOR_LAYER, true)
+	character.set_collision_mask_value(Enums.CollisionLayers.NON_WALKABLE_FLOOR, true)
 	pulling = false
 	remove_string()
 
@@ -260,7 +266,7 @@ func _process_hook_string(delta: float) -> void:
 	var ending_area := get_ending_area()
 	if ending_area:
 		# Move first point to the hooked position.
-		hook_string.points[0] = ending_area.anchor_point.global_position
+		hook_string.points[0] = ending_area.get_anchor_position()
 
 	else:
 		# Not hooked, so a throw that hit air or wall.

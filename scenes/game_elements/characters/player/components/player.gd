@@ -44,10 +44,22 @@ const DEFAULT_SPRITE_FRAME: SpriteFrames = preload("uid://vwf8e1v8brdp")
 ## Controls how the player can interact with the world around them.
 @export var mode: Mode = Mode.COZY:
 	set = _set_mode
+
+## The character walking speed.
 @export_range(10, 100000, 10) var walk_speed: float = 300.0
+
+## The character running speed.
 @export_range(10, 100000, 10) var run_speed: float = 500.0
+
+## The character speed when aiming with the grappling hook.
 @export_range(10, 100000, 10) var aiming_speed: float = 100.0
+
+## How fast does the player transition from walking/running to stopped.
+## A low value will make the character look as slipping on ice.
+## A high value will stop the character immediately.
 @export_range(10, 100000, 10) var stopping_step: float = 1500.0
+
+## How fast does the player transition from stopped to walking/running.
 @export_range(10, 100000, 10) var moving_step: float = 4000.0
 
 ## The SpriteFrames must have specific animations with a certain amount of frames.
@@ -146,7 +158,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	var axis: Vector2 = Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+	var axis: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 
 	var speed: float
 	if player_hook.is_throwing_or_aiming():
@@ -180,12 +192,9 @@ func _process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
-	var step: float
-	if input_vector.is_zero_approx():
-		step = stopping_step
-	else:
-		step = moving_step
-
+	var step := (
+		stopping_step if velocity.length_squared() > input_vector.length_squared() else moving_step
+	)
 	velocity = velocity.move_toward(input_vector, step * delta)
 
 	move_and_slide()

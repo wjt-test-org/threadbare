@@ -1,13 +1,18 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
 @tool
-## Enemy that throws projectiles to the player.
 class_name ThrowingEnemy
 extends CharacterBody2D
+## Enemy that throws [Projectile]s to the player.
+##
+## @tutorial: https://github.com/endlessm/threadbare/discussions/1323
+##
+## This is a piece of the fill-matching mechanic.
+## [br][br]
+## When throwing, the label/color of the projectile is picked from
+## [member allowed_labels] and [member color_per_label].
 
 enum State { IDLE, WALKING, ATTACKING, DEFEATED }
-
-const PROJECTILE_SCENE: PackedScene = preload("uid://j8mqjkg0rvai")
 
 const REQUIRED_ANIMATIONS: Array[StringName] = [
 	&"idle", &"walk", &"attack", &"attack anticipation", &"defeated"
@@ -21,6 +26,9 @@ const WALK_TARGET_SKIP_ANGLE: float = PI / 4.
 ## When targetting the next walking position, skip an inner circle. The radius of the inner
 ## circle is this proportion of the [member walking_range].
 const WALK_TARGET_SKIP_RANGE: float = 0.25
+
+## The projectile scene to instantiate when spawning a projectile.
+@export var projectile_scene: PackedScene = preload("uid://j8mqjkg0rvai")
 
 ## The period of time between throwing projectiles.
 ## Note: Currently this is limited by the length of the AnimationPlayer animation "attack".
@@ -51,6 +59,10 @@ const WALK_TARGET_SKIP_RANGE: float = 0.25
 	set = _set_attack_sound_stream
 
 @export_group("Projectile", "projectile")
+
+## The projectile will be instantiated at this distance from the [member projectile_marker] node,
+## in the direction of the player.
+@export_range(0., 100., 1., "or_greater", "suffix:m") var distance: float = 20.0
 
 ## The speed of the projectile initial impulse and the projectile bouncing impulse.
 @export_range(10., 100., 5., "or_greater", "or_less", "suffix:m/s")
@@ -250,13 +262,13 @@ func shoot_projectile() -> void:
 	if not allowed_labels:
 		_is_attacking = false
 		return
-	var projectile: Projectile = PROJECTILE_SCENE.instantiate()
+	var projectile: Projectile = projectile_scene.instantiate()
 	projectile.direction = projectile_marker.global_position.direction_to(player.global_position)
 	scale.x = 1 if projectile.direction.x < 0 else -1
 	projectile.label = allowed_labels.pick_random()
 	if projectile.label in color_per_label:
 		projectile.color = color_per_label[projectile.label]
-	projectile.global_position = (projectile_marker.global_position + projectile.direction * 20.)
+	projectile.global_position = projectile_marker.global_position + projectile.direction * distance
 	if projectile_follows_player:
 		projectile.node_to_follow = player
 	projectile.sprite_frames = projectile_sprite_frames

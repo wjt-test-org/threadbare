@@ -19,13 +19,15 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 env:
-  GODOT_VERSION: 4.4.1
+  GODOT_VERSION: 4.5
   PCK_NAME: threadbare
 
 jobs:
   build:
     name: Build for web
     runs-on: ubuntu-latest
+    outputs:
+      linux-changed: ${{ steps.changes.outputs.linux }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -36,6 +38,13 @@ jobs:
           # tags?
           fetch-depth: 0
           fetch-tags: true
+
+      - id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            linux:
+              - 'linux/**'
 
       - name: Cache Godot Engine downloads
         id: cache-godot
@@ -99,7 +108,7 @@ jobs:
   flatpak:
     name: Build Flatpak
     needs: build
-    if: ${{ inputs.build_flatpak || github.event_name == 'release' }}
+    if: ${{ inputs.build_flatpak || github.event_name == 'release' || needs.build.outputs.linux-changed == 'true' }}
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-24.08
@@ -117,7 +126,7 @@ jobs:
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: threadbare.flatpak
-          manifest-path: org.endlessaccess.threadbare.yml
+          manifest-path: linux/org.endlessaccess.threadbare.yml
           cache-key: "flatpak-builder-${{ github.sha }}"
 
       - name: Create Linux metadata bundle

@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_02b1a"]
 [ext_resource type="Material" uid="uid://64aeyjitacv3" path="res://scenes/game_elements/props/void/void_chromakey_material.tres" id="3_7h0hr"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="4_j6qjo"]
-[ext_resource type="SpriteFrames" uid="uid://07di3updrwh0" path="res://scenes/game_elements/characters/components/sprite_frames/storyweaver_purple.tres" id="5_6dpig"]
+[ext_resource type="SpriteFrames" uid="uid://dtoylirwywk0j" path="res://scenes/game_elements/characters/components/sprite_frames/storyweaver_blue.tres" id="5_1dsdq"]
 [ext_resource type="PackedScene" uid="uid://evb46lm6ssu2" path="res://scenes/game_elements/props/hookable_pin/hookable_pin.tscn" id="6_rci8f"]
 [ext_resource type="PackedScene" uid="uid://dvj15pnuqr2ua" path="res://scenes/game_elements/props/hookable_button_item/hookable_button_item.tscn" id="7_hf4li"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="8_nt6an"]
@@ -15,8 +15,8 @@
 
 [sub_resource type="Resource" id="Resource_kr8u1"]
 script = ExtResource("9_x5deh")
-name = "Spirit"
-type = 2
+name = "Imagination"
+type = 1
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0r3o"]
@@ -46,7 +46,7 @@ position = Vector2(934, 609)
 scale = Vector2(1.03448, 1)
 player_name = "Storyweaver"
 mode = 2
-sprite_frames = ExtResource("5_6dpig")
+sprite_frames = ExtResource("5_1dsdq")
 
 [node name="Camera2D" type="Camera2D" parent="OnTheGround/Player"]
 zoom = Vector2(0.8, 0.8)
@@ -115,7 +115,7 @@ position = Vector2(-461, 227)
 
 [node name="CollectibleItem" parent="OnTheGround" instance=ExtResource("8_nt6an")]
 position = Vector2(388, 523)
-next_scene = "uid://cufkthb25mpxy"
+next_scene = "uid://ce7nk8qmi64d2"
 item = SubResource("Resource_kr8u1")
 
 [node name="Sign" parent="OnTheGround" instance=ExtResource("10_qkedd")]

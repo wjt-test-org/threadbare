@@ -8,10 +8,14 @@ extends BaseCharacterBehavior
 ## Make the character follow a target.
 ##
 ## The character retargets after traveling [member travel_distance],
-## or when it gets stuck colliding with something.
+## or when it gets stuck colliding with something, or when a new target
+## is set.
 
 ## Emitted when [member target] becomes reached or not.
 signal target_reached_changed(is_reached: bool)
+
+## Emitted when [member character] got stuck while walking.
+signal got_stuck
 
 ## Parameters controlling the speed at which this character walks. If unset, the default values of
 ## [CharacterSpeeds] are used.
@@ -51,6 +55,8 @@ var is_target_reached: bool:
 func _set_target(new_target: Node2D) -> void:
 	target = new_target
 	update_configuration_warnings()
+	if target and character:
+		_update_direction()
 
 
 func _set_is_target_reached(new_is_target_reached: bool) -> void:
@@ -72,14 +78,15 @@ func _update_direction() -> void:
 
 
 func _ready() -> void:
+	super._ready()
 	if Engine.is_editor_hint():
-		set_physics_process(false)
 		return
 
 	if not speeds:
 		speeds = CharacterSpeeds.new()
 
-	_update_direction()
+	if target:
+		_update_direction()
 
 
 func _physics_process(delta: float) -> void:
@@ -91,6 +98,7 @@ func _physics_process(delta: float) -> void:
 
 	if collided and character.is_on_wall():
 		if speeds.is_stuck(character):
+			got_stuck.emit()
 			_update_direction()
 	else:
 		distance += speeds.walk_speed * delta
